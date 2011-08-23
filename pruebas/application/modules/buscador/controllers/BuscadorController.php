@@ -4,6 +4,7 @@ class Buscador_BuscadorController extends Zend_Controller_Action{
 
 
     protected $_tablaMemorias;
+    
 
 
     public function init()
@@ -22,7 +23,7 @@ class Buscador_BuscadorController extends Zend_Controller_Action{
         if($this->getRequest()->isPost()){
             // Si los datos recibidos son válidos
             if($formularioBusqueda->isValid($_POST)){
-                //Datos recibidos del formulario
+                // Datos recibidos del formulario
                 $cadena=$formularioBusqueda->getValue('cadena');
 
                 // Realizar busqueda

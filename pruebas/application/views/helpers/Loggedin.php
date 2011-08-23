@@ -11,7 +11,7 @@ class Application_View_Helper_Loggedin extends Zend_View_Helper_Abstract {
                     <li><a href='#'>Crear</a>
                         <ul>
                             <li><a href='/proyectos/proyectos/crearproyecto'>Novo proxecto</a></li>
-                            <li><a href='/proyectos/proyectos/crearversion'>Nova version</a></li>
+                            <li><a href='/proyectos/versiones/crearversion'>Nova version</a></li>
                         </ul>
                     </li>
                     <li><a href='#'>".$nombre."</a>

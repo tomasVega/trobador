@@ -1,6 +1,7 @@
 <div class="wrapper">
     <h2>Os meus proxectos</h2>
     <center>
+<?php   if(!$this->mensaje) { ?>
         <table>
             <thead>
                 <tr>
@@ -22,11 +23,15 @@
                         <td><?php echo $proyecto['percent_completed']."%";?></td>
                         <td><?php echo $proyecto['creation_date'];?></td>
                         <td><a href="/proyectos/proyectos/verproyecto?idProyecto=<?php echo $proyecto['project_id'];?>">Editar</a></td>
-                        <td><a href="#">Eliminar</a></td>
+                        <td><a href="/proyectos/proyectos/eliminarproyecto?idProyecto=<?php echo $proyecto['project_id'];?>">Eliminar</a></td>
                     </tr>
 
                <?php } ?>
             </tbody>
         </table>
+<?php   } else {
+            echo $this->mensaje;
+        }
+?>
     </center>
 </div>

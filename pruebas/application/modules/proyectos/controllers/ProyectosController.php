@@ -3,8 +3,8 @@
 class Proyectos_ProyectosController extends Zend_Controller_Action
 {
 
-    protected $_tablaProyectos;
-    protected $_tablaVersiones;
+    protected $_tablaProyectos = null;
+    protected $_tablaVersiones = null;
 
     public function init()
     {
@@ -12,9 +12,11 @@ class Proyectos_ProyectosController extends Zend_Controller_Action
         $this->_tablaVersiones= new Proyectos_Model_DbTable_Versions();
     }
 
+    // Formulario que permite crear un nuevo proyecto
     public function crearproyectoAction()
     {
         $this->view->headTitle("Novo proxecto");
+        $mensaje="";
         
         $formularioNuevoProyecto = new Proyectos_Form_Nuevoproyecto();
         $formularioNuevoProyecto->setAction('crearproyecto');
@@ -37,69 +39,44 @@ class Proyectos_ProyectosController extends Zend_Controller_Action
 
                     $this->_tablaVersiones->almacenarVersion($data['nombreVersion'], $userData['user_id'], $idProyecto);
 
-                    echo "proyecto creado";
+                    $mensaje = "Proxecto creado";
 
                 }else{
-                    echo "el proyecto ya existe";
+                    $mensaje = "O proxecto xa existe";
                 }
             }
         }
         
         $this->view->form=$formularioNuevoProyecto;
+        $this->view->mensaje=$mensaje;
         
     }
 
+    // Permite ver la lista de proyectos de un usuario
     public function verproyectosAction()
     {
-
-        $this->view->headTitle("Lista de proxectos");
+        $this->view->headTitle("Listado de proxectos");
+        $mensaje="";
 
         $auth=Zend_Auth::getInstance();
         $userData = $auth->getStorage()->read();
-        $misProyectos=$this->_tablaProyectos->getListaProyectosPorIdUsuario($userData['user_id']);
 
-
-        $this->view->proyectos=$misProyectos;
-        
-    }
-
-    public function crearversionAction()
-    {
-
-        $this->view->headTitle("Nova version");
-        
-        $formularioNuevaVersion = new Proyectos_Form_Nuevaversion();
-        $formularioNuevaVersion->setAction('crearversion');
-        $formularioNuevaVersion->setMethod('post');
-
-        //Si se reciben datos por post
-        if($this->getRequest()->isPost()){
-            //Si los datos recibidos son válidos
-            if($formularioNuevaVersion->isValid($_POST)){
-
-                $data=$formularioNuevaVersion->getValues();
-                
-
-                if($this->_tablaVersiones->existeVersion($data['nombreVersion'], $data['proyecto'])==false){
-
-                    $auth=Zend_Auth::getInstance();
-                    $userData = $auth->getStorage()->read();
-                    $this->_tablaVersiones->almacenarVersion($data['nombreVersion'], $userData['user_id'], $data['proyecto']);
-
-                    echo "version creada";
-
-                }else{
-                    echo "la version ya existe";
-                }
-            }
+        $numProyectos=$this->_tablaProyectos->getNumProyectosPorIdUsuario($userData['user_id']);
+        if($numProyectos > 0) {
+            $misProyectos=$this->_tablaProyectos->getListaProyectosPorIdUsuario($userData['user_id']);
+            $this->view->proyectos=$misProyectos;
+        } else {
+            $mensaje="Non ten ningún proxecto";
         }
-
-        $this->view->form=$formularioNuevaVersion;
+        
+        $this->view->mensaje=$mensaje;
+        
     }
 
+    // Permite ver las características de un proyecto determinado
     public function verproyectoAction()
     {
-
+        $mensaje="";
         // Si se reciben datos por get
         if($this->getRequest()->isGet()){
 
@@ -108,17 +85,38 @@ class Proyectos_ProyectosController extends Zend_Controller_Action
             // Título pestaña navegador
             $this->view->headTitle($proyecto['project_name']);
 
-            $versionesProyecto=$this->_tablaVersiones->getListaVersionesProyectoPorId($proyecto['project_id']);
-
-            
-
-            // Se asignan los datos del proyecto a la vista
-            $this->view->proyecto=$proyecto;
-            $this->view->versiones=$versionesProyecto;
-            
+            if($this->_tablaVersiones->getNumVersionesPorId($proyecto['project_id']) > 0) {
+                $versionesProyecto=$this->_tablaVersiones->getListaVersionesProyectoPorId($proyecto['project_id']);
+                $this->view->versiones=$versionesProyecto;
+            } else {
+                $mensaje="O proxecto non ten versións";
+            }  
         }
+        // Se asignan los datos del proyecto a la vista
+        $this->view->proyecto=$proyecto;
+        $this->view->mensaje=$mensaje;
+    }
 
+    // Elimina el proyecto seleccionado
+    public function eliminarproyectoAction()
+    {
+        $this->view->headTitle("Eliminar proxecto");
+
+        $mensaje="";
+        // Si se reciben datos por get
+        if($this->getRequest()->isGet()){
+
+            $idProyecto=$this->getRequest()->getParam("idProyecto");
+            // Al borrar un proyecto elimino sus versiones @todo (revisar)
+            $this->_tablaVersiones->eliminarVersiones($idProyecto);
+            $this->_tablaProyectos->eliminarProyecto($idProyecto);
+            $mensaje="Proxecto e versións eliminados con éxito";
+
+        }
+        $this->view->mensaje=$mensaje;
     }
 
 
 }
+
+

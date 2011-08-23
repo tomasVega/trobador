@@ -1,41 +1,46 @@
 <div class="wrapper">
     <h2><?php echo $this->proyecto['project_name']?></h2>
-            <center>
-        <div class="tablaProyecto">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Participantes</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><?php echo $this->proyecto['user_id'];?></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <center>
+<?php       if(!$this->mensaje) { ?>
+                <div class="tablaProyecto">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Participantes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><?php echo $this->proyecto['user_id'];?></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Editar</th>
-                        <th>Eliminar</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <?php
-                        foreach ($this->versiones as $version){
-                    ?>
+                <table>
+                    <thead>
                         <tr>
-                            <td><?php echo $version['version_name'];?></td>
-                            <td><a href="/proyectos/proyectos/verversion?idProyecto=<?php echo $version['version_id'];?>">Editar</a></td>
-                            <td><a href="#">Eliminar</a></td>
+                            <th>Nome</th>
+                            <th>Editar</th>
+                            <th>Eliminar</th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                            foreach ($this->versiones as $version){
+                        ?>
+                            <tr>
+                                <td><?php echo $version['version_name'];?></td>
+                                <td><a href="/proyectos/versiones/verversion?idVersion=<?php echo $version['version_id'];?>">Editar</a></td>
+                                <td><a href="/proyectos/versiones/eliminarversion?idVersion=<?php echo $version['version_id'];?>">Eliminar</a></td>
+                            </tr>
 
-                   <?php } ?>
-                </tbody>
-            </table>
+                       <?php } ?>
+                    </tbody>
+                </table>
+<?php       } else {
+                echo $this->mensaje;
+            }
+?>
     </center>
 </div>

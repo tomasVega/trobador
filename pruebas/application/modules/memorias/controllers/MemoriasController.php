@@ -49,36 +49,53 @@ class Memorias_MemoriasController extends Zend_Controller_Action
 
     public function parseararchivoAction()
     {
+        $this->view->headTitle("Subir Arquivo");
     
         $idTmx=$this->getRequest()->getParam('tmx_id');
         $nombreArchivo=$this->getRequest()->getParam('archivo');
+        $mensaje="";
+
+        libxml_use_internal_errors(true);
         // Carga un archivo XML
         $tmx = new SimpleXMLElement(UPLOAD_PATH.$nombreArchivo, null, true);
 
-        $body=$tmx->body;
+        // Comprobar errores
+        if (!$tmx) {
+            // @todo
+            /*echo "Error cargando XML\n";
+            foreach(libxml_get_errors() as $error) {
+                echo "\t", $error->message;
+            }*/
+            $mensaje="Aconteceu un erro durante a subida ó servidor";
+        } else {
+            $body=$tmx->body;
 
-        $tablaTranslationUnits=new Memorias_Model_DbTable_Translationunits();
-        //Almacenar las cadenas de traduccion
-        foreach($body->tu as $tu){
+            $tablaTranslationUnits=new Memorias_Model_DbTable_Translationunits();
+            //Almacenar las cadenas de traduccion
+            foreach($body->tu as $tu){
 
-            $cadenaOriginal=$tu->tuv[0]->seg;
-            $att_xmlO=$tu->tuv[0]->attributes('xml',1);
-            $idiomaCadenaOriginal=$att_xmlO['lang'];
-            $i=0;
+                $cadenaOriginal=$tu->tuv[0]->seg;
+                $att_xmlO=$tu->tuv[0]->attributes('xml',1);
+                $idiomaCadenaOriginal=$att_xmlO['lang'];
+                $i=0;
 
-            foreach($tu->tuv as $tuv){
-                if(!$i==0){
-                    $cadenaTraducida=$tuv->seg;
-                    $att_xmlT=$tuv->attributes('xml',1);
-                    $idiomaCadenaTraducida=$att_xmlT['lang'];
-                    $tablaTranslationUnits->almacenarTranslationUnit($cadenaOriginal, $idiomaCadenaOriginal, $cadenaTraducida, $idiomaCadenaTraducida, $idTmx);
+                foreach($tu->tuv as $tuv){
+                    if(!$i==0){
+                        $cadenaTraducida=$tuv->seg;
+                        $att_xmlT=$tuv->attributes('xml',1);
+                        $idiomaCadenaTraducida=$att_xmlT['lang'];
+                        $tablaTranslationUnits->almacenarTranslationUnit($cadenaOriginal, $idiomaCadenaOriginal, $cadenaTraducida, $idiomaCadenaTraducida, $idTmx);
+                    }
+                    $i=$i+1;
                 }
-                $i=$i+1;
             }
+
+            $mensaje="Arquivo almacenado con éxito";
         }
             
         //Eliminar fichero real del servidor
         unlink(UPLOAD_PATH.$nombreArchivo);
+        $this->view->mensaje=$mensaje;
 
     }
 

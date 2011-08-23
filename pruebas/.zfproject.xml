@@ -144,6 +144,13 @@
               <actionMethod actionName="verproyectos"/>
               <actionMethod actionName="crearversionbroza"/>
               <actionMethod actionName="verproyecto"/>
+              <actionMethod actionName="eliminarproyecto"/>
+            </controllerFile>
+            <controllerFile controllerName="Versiones">
+              <actionMethod actionName="index"/>
+              <actionMethod actionName="eliminarversion"/>
+              <actionMethod actionName="verversion"/>
+              <actionMethod actionName="eliminarversiones"/>
             </controllerFile>
           </controllersDirectory>
           <formsDirectory enabled="false"/>
@@ -168,6 +175,21 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Proyectos">
                 <viewScriptFile forActionName="verproyecto"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Versiones">
+                <viewScriptFile forActionName="index"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Proyectos">
+                <viewScriptFile forActionName="eliminarproyecto"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Versiones">
+                <viewScriptFile forActionName="eliminarversion"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Versiones">
+                <viewScriptFile forActionName="verversion"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Versiones">
+                <viewScriptFile forActionName="eliminarversiones"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
