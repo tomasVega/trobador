@@ -7,21 +7,22 @@
             echo $this->headTitle();
             $this->headLink()->appendStylesheet("/css/estilo.css");
             $this->headScript()->appendFile("/js/scripts.js");
+            $this->headScript()->appendFile("/js/funciones.js");
             echo $this->headScript();
             echo $this->headLink();
             echo $this->jQuery();
         ?>
     </head>
     <body>
-        <div class="todo">
-            <div class="barraMenu">
-                <div class="areaLogin">
+        <div class = "todo">
+            <div class = "barraMenu">
+                <div class = "areaLogin">
                     <?php
                         //echo $this->navigation()->menu();
                         if( Zend_Auth::getInstance()->hasIdentity() ) {
-                            $auth=Zend_Auth::getInstance();
+                            $auth = Zend_Auth::getInstance();
                             $data = $auth->getStorage()->read();
-                            $nombreUsuario=$data['name'];
+                            $nombreUsuario = $data['name'];
                             //ViewHelper que carga el menú cuando el usuario esta logged in
                             echo $this->loggedin($nombreUsuario);
                     ?>   
@@ -41,7 +42,10 @@
                 
             <div class="piePagina">
                 Pie
-
+                <input id="boton" type = "button" value="Click"/>
+                <div id="prueba">
+                    hola
+                </div>
             </div>
         </div>
     </body>

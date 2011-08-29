@@ -55,6 +55,7 @@
               <actionMethod actionName="enviarMail"/>
               <actionMethod actionName="activaremail"/>
               <actionMethod actionName="recuperarpassword"/>
+              <actionMethod actionName="modificardatos"/>
             </controllerFile>
             <controllerFile controllerName="LoginController">
               <actionMethod actionName="index"/>
@@ -89,6 +90,9 @@
               </viewControllerScriptsDirectory>
               <viewControllerScriptsDirectory forControllerName="Usuarios">
                 <viewScriptFile forActionName="recuperarpassword"/>
+              </viewControllerScriptsDirectory>
+              <viewControllerScriptsDirectory forControllerName="Usuarios">
+                <viewScriptFile forActionName="modificardatos"/>
               </viewControllerScriptsDirectory>
             </viewScriptsDirectory>
             <viewHelpersDirectory/>
