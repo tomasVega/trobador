@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth
+END
+Consumer.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Consumer.php
+END
+Client.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Client.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Exception.php
+END
+Http.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Http.php
+END
+Token.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Token.php
+END
+Config.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Config.php
+END

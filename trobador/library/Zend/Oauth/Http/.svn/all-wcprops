@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Http
+END
+RequestToken.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Http/RequestToken.php
+END
+UserAuthorization.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Http/UserAuthorization.php
+END
+AccessToken.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Http/AccessToken.php
+END
+Utility.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Oauth/Http/Utility.php
+END

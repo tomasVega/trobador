@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Db
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Db/Exception.php
+END
+Expr.php
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Db/Expr.php
+END
+Select.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Db/Select.php
+END
+Profiler.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Db/Profiler.php
+END
+Statement.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Db/Statement.php
+END
+Table.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Db/Table.php
+END

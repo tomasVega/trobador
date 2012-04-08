@@ -1,0 +1,10 @@
+<div class="wrapper">
+    <h2>Erro</h2>
+    <center>
+        <?php
+            if($this->msg){
+                echo $this->msg;
+            }
+        ?>
+    </center>
+</div>

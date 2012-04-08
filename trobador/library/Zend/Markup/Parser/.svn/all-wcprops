@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Markup/Parser
+END
+ParserInterface.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Markup/Parser/ParserInterface.php
+END
+Bbcode.php
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Markup/Parser/Bbcode.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Markup/Parser/Exception.php
+END
+Textile.php
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Markup/Parser/Textile.php
+END

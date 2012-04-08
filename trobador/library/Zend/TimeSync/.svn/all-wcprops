@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/TimeSync
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/TimeSync/Exception.php
+END
+Ntp.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/TimeSync/Ntp.php
+END
+Protocol.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/TimeSync/Protocol.php
+END
+Sntp.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/TimeSync/Sntp.php
+END

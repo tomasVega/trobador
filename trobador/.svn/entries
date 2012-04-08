@@ -1,0 +1,46 @@
+10
+
+dir
+3
+https://subversion.assembla.com/svn/proyectoosl/pruebas
+https://subversion.assembla.com/svn/proyectoosl
+
+
+
+2011-07-29T17:22:11.303042Z
+3
+tomasVega
+has-props
+
+
+
+
+
+
+
+
+
+
+
+
+
+721448b5-081a-4c40-8a28-b5e1b85891b8
+
+application
+dir
+
+library
+dir
+
+nbproject
+dir
+
+public
+dir
+
+resources
+dir
+
+tests
+dir
+

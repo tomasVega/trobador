@@ -1,0 +1,11 @@
+<div class="wrapper">
+    <h2>Crear novo proxecto</h2>
+    <div class="alinear">
+        <?php
+            echo $this->form->render();
+            if($this->mensaje){
+                echo $this->mensaje;
+            }
+        ?>
+    </div>
+</div>

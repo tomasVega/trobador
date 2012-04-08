@@ -1,0 +1,86 @@
+<?=$this->doctype()?>
+<html>
+    <head>
+        <?
+            //ViewHelper que carga los metas con la información necesaria
+            echo $this->headersdescriptivos();
+            echo $this->headTitle();
+            $this->headLink()->appendStylesheet("/css/estilos.css");
+            $this->headScript()->appendFile("/js/scripts.js");
+            $this->headScript()->appendFile("/js/funciones.js");
+            $this->headScript()->appendFile("/js/dropdown.js");
+            $this->headScript()->appendFile("/js/bootstrap-modal.js");
+            $this->headScript()->appendFile("/js/jquery/jquery.blockUI.1.33.js");
+            echo $this->headScript();
+            echo $this->headLink();
+            echo $this->jQuery();
+        ?>
+    </head>
+    <body>
+        <div class="topbar" data-dropdown="dropdown">
+            <div class="fill">
+                <div class="container">
+                    <a class="brand" href="/buscador/buscador/">Trobador</a>
+                    <?//=$this->navigation()->menu()?>
+                    <?=$this->menu()?>
+                    
+                    <?=$this->menuadmin()?>
+                    
+                    <div class="pull-right">
+                    <?  if(!Zend_Auth::getInstance()->hasIdentity()){
+                            echo $this->login(new Usuarios_Form_Login());
+                        } else {
+                            echo $this->loggedin();
+                        } ?>
+                    </div>
+                </div>
+            </div>
+        </div><!-- fin topbar -->
+        
+        <div class="container">
+            <div style="float:right">
+                <?=new Buscador_Form_Elegiridioma()?>
+            </div>
+            <!-- Se imprimen los mensajes de error/aviso al usuario -->
+            <div style="clear:both">
+                <center>
+                 <? $messenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
+                    $messages = array_merge($messenger->getCurrentMessages(),$messenger->getMessages());
+                    foreach ($messages as $message) { ?>
+                        <div id="alerta" class="alert-message info fade in">
+                            <a id="closealerta" class="close" data-dismiss="alert-message" href="#">&times;</a>
+                            <?=$this->escape($this->translate($message))?>
+                        </div>
+                    <? 
+                    }
+                    $messenger->clearMessages(); 
+                    ?>
+                </center>
+            </div>
+            <div>
+                <?=$this->layout()->content?>
+            </div>
+
+            <footer>
+                <?=$this->footer()?>
+            </footer>
+            
+            <a id="btnModal" class="btn" >Launch Modal</a>
+            
+            <div class="modal hide" id="myModal">
+                <div class="modal-header">
+                    <a id ="btnCerrarModal" class="close" data-dismiss="modal">&times;</a>
+                    <h3>Ventana</h3>
+                </div>
+                <div class="modal-body">
+                    <p>Seleccione una opción</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#" id ="btnCerrarModal1" class="btn">Cancelar</a>
+                    <a href="#" id ="btnGuardarModal" class="btn btn-primary">Aceptar</a>
+                </div>
+            </div>
+            
+        </div>
+    </body>
+</html>

@@ -1,0 +1,11 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/proyectoosl/!svn/ver/3/pruebas/tests
+END
+phpunit.xml
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/proyectoosl/!svn/ver/3/pruebas/tests/phpunit.xml
+END

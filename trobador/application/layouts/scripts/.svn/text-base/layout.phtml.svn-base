@@ -1,0 +1,48 @@
+<?php echo $this->doctype(); ?>
+<html>
+    <head>
+        <?php
+            //ViewHelper que carga los metas con la información necesaria
+            echo $this->headersdescriptivos();
+            echo $this->headTitle();
+            $this->headLink()->appendStylesheet("/css/estilo.css");
+            $this->headScript()->appendFile("/js/scripts.js");
+            echo $this->headScript();
+            echo $this->headLink();
+            echo $this->jQuery();
+        ?>
+    </head>
+    <body>
+        <div class="todo">
+            <div class="barraMenu">
+                <div class="areaLogin">
+                    <?php
+                        //echo $this->navigation()->menu();
+                        if( Zend_Auth::getInstance()->hasIdentity() ) {
+                            $auth=Zend_Auth::getInstance();
+                            $data = $auth->getStorage()->read();
+                            $nombreUsuario=$data['name'];
+                            //ViewHelper que carga el menú cuando el usuario esta logged in
+                            echo $this->loggedin($nombreUsuario);
+                    ?>   
+                </div><!-- div que cierra el menu areaLogin en caso de estar logueado -->
+                    <?php
+                        } else {
+                            //View Helper que carga el menú de login
+                            echo $this->login(new Usuarios_Form_Login());
+                    ?>      
+                </div><!-- div que cierra el menu areaLogin en caso de NO estar logueado -->
+                    <?php } ?>
+            </div>
+
+            <div class="contenido">
+                <?php echo $this->layout()->content; ?>
+            </div>
+                
+            <div class="piePagina">
+                Pie
+
+            </div>
+        </div>
+    </body>
+</html>

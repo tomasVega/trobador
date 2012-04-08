@@ -1,0 +1,33 @@
+<div class="hero-unit">
+    <h2><?=Zend_Registry::get('Zend_Translate')->translate('m042')?></h2>
+    <center>
+<?      if(!$this->mensaje) { ?>
+        <table class="tabla">
+            <thead>
+                <tr>
+                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m049')?></th>
+                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m057')?></th>
+                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m058')?></th>
+                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m055')?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?  $tablaUsuarios = new Usuarios_Model_DbTable_Users();
+                    foreach ($this->proyectos as $proyecto){
+                ?>
+                    <tr>
+                        <td><a href="/proyectos/proyectos/verproyecto?idProyecto=<?=$proyecto['project_id']?>"><?=$proyecto['project_name']?></a></td>
+                        <td><?=$tablaUsuarios->getNamePorId($proyecto['user_id'])?></td>
+                        <td><?=$proyecto['percent_completed']."%"?></td>
+                        <td><?=$proyecto['creation_date']?></td>
+                    </tr>
+
+               <? } ?>
+            </tbody>
+        </table>
+<?      } else {
+            echo $this->mensaje;
+        }
+?>
+    </center>
+</div>

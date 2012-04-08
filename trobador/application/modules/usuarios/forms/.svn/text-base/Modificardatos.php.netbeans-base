@@ -1,0 +1,42 @@
+<?php
+
+class Usuarios_Form_Modificardatos extends Zend_Form {
+
+    public function __construct($options){
+
+        parent::__construct($options);
+
+        //Config del formulario
+        $this->setAction('/usuarios/usuarios/modificardatos');
+        $this->setMethod('post');
+
+        //Elementos del formulario
+        $email=$this->createElement('text', 'email');
+        $email->setLabel('E-mail: ');
+        $email->setRequired(true);
+        $email->setAttrib('size', 20);
+        $email->setAttrib('maxlength', 200);
+        $email->addValidator(new Zend_Validate_EmailAddress());
+        $email->addFilters(array(
+            new Zend_Filter_StringTrim(),
+            new Zend_Filter_StringToLower(),
+        ));
+        $email->setValue($options['email']);
+
+        
+        $nombre=$this->createElement('text', 'name');
+        $nombre->setLabel('Nome: ');
+        $nombre->setRequired(true);
+        $nombre->setAttrib('size', 20);
+        $nombre->setAttrib('maxlength', 100);
+        $nombre->setValue($options['name']);
+
+
+        $submit=$this->createElement('submit','submit',array('label'=>'Modificar'));
+
+        //Añadir elementos creados al formulario
+        $this->addElements(array($email, $nombre, $submit));
+        
+    }
+}
+?>

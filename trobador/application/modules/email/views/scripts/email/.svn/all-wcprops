@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/proyectoosl/!svn/ver/3/pruebas/application/modules/email/views/scripts/email
+END
+enviaremail.phtml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/proyectoosl/!svn/ver/3/pruebas/application/modules/email/views/scripts/email/enviaremail.phtml
+END
+activaremail.phtml
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/proyectoosl/!svn/ver/3/pruebas/application/modules/email/views/scripts/email/activaremail.phtml
+END
+enviarpassword.phtml
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/proyectoosl/!svn/ver/3/pruebas/application/modules/email/views/scripts/email/enviarpassword.phtml
+END

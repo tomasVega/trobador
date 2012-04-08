@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Paginator
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Paginator/Exception.php
+END
+SerializableLimitIterator.php
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Paginator/SerializableLimitIterator.php
+END
+AdapterAggregate.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Paginator/AdapterAggregate.php
+END

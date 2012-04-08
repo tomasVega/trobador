@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed
+END
+Element.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Element.php
+END
+Writer.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Writer.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Exception.php
+END
+Atom.php
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Atom.php
+END
+Reader.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Reader.php
+END
+Abstract.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Abstract.php
+END
+Builder.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Builder.php
+END
+Rss.php
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Rss.php
+END
+Pubsubhubbub.php
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Feed/Pubsubhubbub.php
+END

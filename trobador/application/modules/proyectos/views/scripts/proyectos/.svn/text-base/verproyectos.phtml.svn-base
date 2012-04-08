@@ -1,0 +1,37 @@
+<div class="wrapper">
+    <h2>Os meus proxectos</h2>
+    <center>
+<?php   if(!$this->mensaje) { ?>
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Propietario</th>
+                    <th>Porcentaxe</th>
+                    <th>Data de creaci&oacute;n</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                    foreach ($this->proyectos as $proyecto){
+                ?>
+                    <tr>
+                        <td><?php echo $proyecto['project_name'];?></td>
+                        <td><?php echo $proyecto['user_id'];?></td>
+                        <td><?php echo $proyecto['percent_completed']."%";?></td>
+                        <td><?php echo $proyecto['creation_date'];?></td>
+                        <td><a href="/proyectos/proyectos/verproyecto?idProyecto=<?php echo $proyecto['project_id'];?>">Editar</a></td>
+                        <td><a href="/proyectos/proyectos/eliminarproyecto?idProyecto=<?php echo $proyecto['project_id'];?>">Eliminar</a></td>
+                    </tr>
+
+               <?php } ?>
+            </tbody>
+        </table>
+<?php   } else {
+            echo $this->mensaje;
+        }
+?>
+    </center>
+</div>

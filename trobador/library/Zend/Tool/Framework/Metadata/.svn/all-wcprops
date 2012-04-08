@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Tool/Framework/Metadata
+END
+Tool.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Tool/Framework/Metadata/Tool.php
+END
+Interface.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Tool/Framework/Metadata/Interface.php
+END
+Basic.php
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Tool/Framework/Metadata/Basic.php
+END
+Attributable.php
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Tool/Framework/Metadata/Attributable.php
+END
+Dynamic.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Tool/Framework/Metadata/Dynamic.php
+END

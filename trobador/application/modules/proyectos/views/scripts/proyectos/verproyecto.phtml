@@ -1,0 +1,55 @@
+<div class="hero-unit">
+    <h2><?=$this->proyecto['project_name']?></h2>
+        <center>
+<?       if(!$this->mensaje) { ?>
+                    <!--<table class="tabla">
+                        <thead>
+                            <tr>
+                                <th>Participantes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><?//=$this->proyecto['user_id']?></td>
+                            </tr>
+                        </tbody>
+                    </table>-->
+
+                <table class="tabla">
+                    <thead>
+                        <tr>
+                            <th><?=Zend_Registry::get('Zend_Translate')->translate('m030')?></th>
+                            <th><?=Zend_Registry::get('Zend_Translate')->translate('m055')?></th>
+                            <!--<th>Editar</th>-->
+                            <?
+                            $acl = new Usuarios_Model_Acl();
+                            $auth = Zend_Auth::getInstance();
+                            $data = $auth->getStorage()->read();
+
+                            if ($acl->esAdmin($data['role_name'])) {?>
+                                <th><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></th>
+                            <?}?>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?
+                        foreach ($this->versiones as $version){
+                    ?>
+                            <tr>
+                                <td><?=$version['version_name']?></td>
+                                <td><?=$version['creation_date']?></td>
+                                <!--<td><a href="/proyectos/versiones/verversion?idVersion=<?//=$version['version_id']?>">Editar</a></td>-->
+                                <?if ($acl->esAdmin($data['role_name'])) {?>
+                                    <td><a href="/proyectos/versiones/eliminarversion?idVersion=<?=$version['version_id']?>"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
+                                <?}?>
+                            </tr>
+
+                   <?   } ?>
+                    </tbody>
+                </table>
+<?         } else {
+                echo $this->mensaje;
+            }
+?>
+    </center>
+</div>

@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Queue/Adapter/Db
+END
+postgresql.sql
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Queue/Adapter/Db/postgresql.sql
+END
+mysql.sql
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Queue/Adapter/Db/mysql.sql
+END
+queue_sqlite.sql
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Queue/Adapter/Db/queue_sqlite.sql
+END
+sqlsrv.sql
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Queue/Adapter/Db/sqlsrv.sql
+END
+Message.php
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Queue/Adapter/Db/Message.php
+END
+Queue.php
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Queue/Adapter/Db/Queue.php
+END

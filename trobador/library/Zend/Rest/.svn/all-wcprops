@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Rest
+END
+Client.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Rest/Client.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Rest/Exception.php
+END
+Route.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Rest/Route.php
+END
+Controller.php
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Rest/Controller.php
+END
+Server.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Rest/Server.php
+END

@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Amf
+END
+Constants.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Amf/Constants.php
+END
+Exception.php
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Amf/Exception.php
+END
+Response.php
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Amf/Response.php
+END
+Server.php
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Amf/Server.php
+END
+Request.php
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Amf/Request.php
+END

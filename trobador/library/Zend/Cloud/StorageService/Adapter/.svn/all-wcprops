@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Cloud/StorageService/Adapter
+END
+Nirvanix.php
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Cloud/StorageService/Adapter/Nirvanix.php
+END
+WindowsAzure.php
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Cloud/StorageService/Adapter/WindowsAzure.php
+END
+FileSystem.php
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Cloud/StorageService/Adapter/FileSystem.php
+END
+S3.php
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Cloud/StorageService/Adapter/S3.php
+END

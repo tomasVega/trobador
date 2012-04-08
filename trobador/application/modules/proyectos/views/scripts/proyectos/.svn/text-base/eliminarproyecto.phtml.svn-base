@@ -1,0 +1,8 @@
+<div class="wrapper">
+    <h2>Eliminar proxecto</h2>
+    <div class="alinear">
+        <?php
+            echo $this->mensaje;
+        ?>
+    </div>
+</div>

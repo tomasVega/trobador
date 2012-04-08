@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Ldap/Node/RootDse
+END
+eDirectory.php
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Ldap/Node/RootDse/eDirectory.php
+END
+ActiveDirectory.php
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Ldap/Node/RootDse/ActiveDirectory.php
+END
+OpenLdap.php
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/proyectoosl/!svn/ver/3/pruebas/library/Zend/Ldap/Node/RootDse/OpenLdap.php
+END
