@@ -1,9 +1,5 @@
-El index de la aplicación es "http://zf.local/buscador/buscador/"
-donde zf.local es el servidor virtual creado mediante el archivo
-adjunto de nombre "zf-local".
-
-La base de datos se adjunta en el archivo de nombre "traduccion.sql"
-y el usuario para acceder a la aplicacion es "user@user.com" y con la
+La base de datos se adjunta en el archivo de nombre "trobador.sql"
+y el usuario para acceder a la aplicacion es "admin@admin.com" y con la
 contraseña "12345" (Sin las comillas)
 
 Para probar la aplicacion es necesario modificar en la ruta
@@ -11,6 +7,3 @@ Para probar la aplicacion es necesario modificar en la ruta
 ".ini" estableciendo los parámetros "resources.db." según
 los propios.
 
-
-NOTA:El envío de emails de confirmación de registro se realiza temporalmente 
-mediante el smtp de gmail y los emails son recibidos como spam.
