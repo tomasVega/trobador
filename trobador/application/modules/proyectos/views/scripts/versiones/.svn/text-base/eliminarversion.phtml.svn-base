@@ -1,8 +1,0 @@
-<div class="wrapper">
-    <h2>Eliminar versi&oacute;n</h2>
-    <div class="alinear">
-        <?php
-            echo $this->mensaje;
-        ?>
-    </div>
-</div>

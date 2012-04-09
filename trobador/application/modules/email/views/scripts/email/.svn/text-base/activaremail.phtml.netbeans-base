@@ -1,6 +1,0 @@
-<div class="wrapper">
-    <h2>Activar conta</h2>
-    <center>
-        <?php echo $this->mensaje;?>
-    </center>
-</div>
