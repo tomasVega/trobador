@@ -114,6 +114,11 @@ return array(
     "m110"  =>  "Edit",
     "m111"  =>  "Cancel",
     "m112"  =>  "View",
+    "m113"  =>  "Do you want to remove the project",
+    "m114"  =>  "Select an option",
+    "m115"  =>  "Accept",
+    "m116"  =>  "Do you want to remove the version",
+    "m117"  =>  "Do you want to remove the user",
     
     "err000"    =>  "Application Error",
     "err001"    =>  "Check your e-mail, you must activate your account to access",
@@ -154,6 +159,7 @@ return array(
     "err036"    =>  "It can't be deleted",
     "err037"    =>  "There aren't assigned projects",
     "err038"    =>  "E-mail and password required",
+    "err039"    =>  "Page not found",
     
 );
 

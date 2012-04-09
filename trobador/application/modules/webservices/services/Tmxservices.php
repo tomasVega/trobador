@@ -66,45 +66,6 @@ class Webservices_Service_Tmxservices {
             
             return $xml;
         
-        
-        
-        
-        
-
-//        $tmx = new SimpleXMLElement("<tmx></tmx>");
-//        $header = $tmx->addChild('header');
-//        $header->addAttribute('datatype', 'PlainText');
-//        $body = $tmx->addChild('body');
-//
-//        $i = 0;
-//        
-//        while($i < $cadenas->count()) {
-//
-//            $cadenaActual = $cadenas[$i];
-//
-//            $tu = $body->addChild('tu');
-//            if($cadenaActual['comment'] != null){
-//                $tu->addChild('note', $cadenaActual['comment']);
-//            }
-//
-//            $tuv = $tu->addChild('tuv');
-//            $tuv->addAttribute("xml:lang", $cadenaActual['original_unit_language'], 'http://www.w3.org/XML/1998/namespace');
-//            $seg = $tuv->addChild('seg',$cadenaActual['original_unit']);
-//
-//            $tuv2 = $tu->addChild('tuv');
-//            $tuv2->addAttribute("xml:lang", $cadenaActual['translated_unit_language'], 'http://www.w3.org/XML/1998/namespace');
-//            $seg2 = $tuv2->addChild('seg',$cadenaActual['translated_unit']);
-//            $i = $i + 1;
-//        }
-        //Header('Content-type: text/xml');
-
-        // Formatear doc
-        //$dom = new DOMDocument('1.0');
-        //$dom->formatOutput = true;
-        //$dom->loadXML($tmx->asXML());
-
-        //return $dom->saveXML();
-        
     }
     
     

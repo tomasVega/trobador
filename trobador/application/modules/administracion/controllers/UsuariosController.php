@@ -67,26 +67,58 @@ class Administracion_UsuariosController extends Zend_Controller_Action
         }
     }
 
+//    public function eliminarusuarioAction() {
+//        
+//        // Comprobación de permisos
+//        if($this->_acl->tienePermiso($this->_userData['role_name'], 'usuarios', 'eliminar')) {
+//
+//            $formularioEliminarUsuario = new Administracion_Form_Eliminarusuario();
+//
+//            //Si se reciben datos por post
+//            if($this->getRequest()->isPost()){
+//                //Si los datos recibidos son válidos
+//                if($formularioEliminarUsuario->isValid($_POST)){
+//                    //Datos recibidos del formulario
+//                    $data = $formularioEliminarUsuario->getValues();
+//                    // Se eliminan los grupos a los que pertenece el usuario y luego el user
+//                    $this->_tablaUsuariosProyectos->eliminarPorIdUsuario($data['user_id']);
+//                    $this->_tablaUsuarios->eliminarUsuario($data['user_id']);
+//                    $mensaje = Zend_Registry::get('Zend_Translate')->translate('m087');
+//                    $this->_helper->FlashMessenger($mensaje);
+//
+//                }
+//            }
+//
+//            $this->_redirect('/administracion/usuarios/gestionusuarios');
+//            
+//        } else {
+//            $this->_redirect('administracion/recursos/errorpermisos');
+//        }
+//        
+//    }
+    
+    
     public function eliminarusuarioAction() {
         
         // Comprobación de permisos
         if($this->_acl->tienePermiso($this->_userData['role_name'], 'usuarios', 'eliminar')) {
 
-            $formularioEliminarUsuario = new Administracion_Form_Eliminarusuario();
+            //$formularioEliminarUsuario = new Administracion_Form_Eliminarusuario();
 
             //Si se reciben datos por post
-            if($this->getRequest()->isPost()){
+            if($this->getRequest()->isGet()){
                 //Si los datos recibidos son válidos
-                if($formularioEliminarUsuario->isValid($_POST)){
+                //if($formularioEliminarUsuario->isValid($_POST)){
                     //Datos recibidos del formulario
-                    $data = $formularioEliminarUsuario->getValues();
+                    //$data = $formularioEliminarUsuario->getValues();
+                    $idUsuario = $this->getRequest()->getParam("idUsuario");
                     // Se eliminan los grupos a los que pertenece el usuario y luego el user
-                    $this->_tablaUsuariosProyectos->eliminarPorIdUsuario($data['user_id']);
-                    $this->_tablaUsuarios->eliminarUsuario($data['user_id']);
+                    $this->_tablaUsuariosProyectos->eliminarPorIdUsuario($idUsuario);
+                    $this->_tablaUsuarios->eliminarUsuario($idUsuario);
                     $mensaje = Zend_Registry::get('Zend_Translate')->translate('m087');
                     $this->_helper->FlashMessenger($mensaje);
 
-                }
+                //}
             }
 
             $this->_redirect('/administracion/usuarios/gestionusuarios');

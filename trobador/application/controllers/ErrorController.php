@@ -22,13 +22,13 @@ class ErrorController extends Zend_Controller_Action
                 // 404 error -- controller or action not found
                 $this->getResponse()->setHttpResponseCode(404);
                 $priority = Zend_Log::NOTICE;
-                $this->view->message = 'Páxina non atopada';
+                $this->view->message = Zend_Registry::get('Zend_Translate')->translate('err039');
                 break;
             default:
                 // application error
                 $this->getResponse()->setHttpResponseCode(500);
                 $priority = Zend_Log::CRIT;
-                $this->view->message = 'Erro da aplicación';
+                $this->view->message = Zend_Registry::get('Zend_Translate')->translate('err000');
                 break;
         }
 

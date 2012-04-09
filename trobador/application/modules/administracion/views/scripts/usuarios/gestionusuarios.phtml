@@ -7,7 +7,7 @@
     }
 ?>
 <?   if(!$this->mensaje) { ?>
-        <table class="tabla">
+        <table id="tablaUsuarios" class="tabla">
             <thead>
                 <tr>
                     <th><?=Zend_Registry::get('Zend_Translate')->translate('m049')?></th>
@@ -26,7 +26,7 @@
                         <a href="#"><?=Zend_Registry::get('Zend_Translate')->translate('m111')?></a>
                     </td><td></td>
                 </tr>
-                <?
+                <?  $i = 0;
                     foreach ($this->usuarios as $usuario){
                 ?>
                     <tr>
@@ -34,15 +34,15 @@
                         <?  $acl = new Usuarios_Model_Acl();
                             $tablaRoles = new Administracion_Model_DbTable_Roles();
                         if(!$acl->esAdmin($tablaRoles->getRoleNamePorId($usuario['role_id']))){ ?>
-                            <?= new Administracion_Form_Eliminarusuario($usuario)?>
+                            <?//= new Administracion_Form_Eliminarusuario($usuario)?>
+                            <td><a id="btnModal<?=$i?>" onclick='addEliminarUsuario(<?=$usuario['user_id']?>,"<?=Zend_Registry::get('Zend_Translate')->translate('m117')?>","<?=Zend_Registry::get('Zend_Translate')->translate('m115')?>")' href="#"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
                         <?} else {
                             ?><td></td><?
                         } ?>
-                        <td><a href="/administracion/usuarios/asignarproxectosusuario?idUsuario=<?=$usuario['user_id']?>"><?=Zend_Registry::get('Zend_Translate')->translate('m112')?></a></td>
-                        <!-- <td><a href="/administracion/usuarios/eliminarusuario?idUsuario=<? //echo $usuario['user_id'];?>">Eliminar</a></td> -->
+                        <td><a  href="/administracion/usuarios/asignarproxectosusuario?idUsuario=<?=$usuario['user_id']?>"><?=Zend_Registry::get('Zend_Translate')->translate('m112')?></a></td>
                     </tr>
 
-               <? } ?>
+               <? $i = $i + 1;} ?>
             </tbody>
         </table>
 <?   } else {

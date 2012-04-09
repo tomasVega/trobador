@@ -114,6 +114,11 @@ return array(
     "m110"  =>  "Editar",
     "m111"  =>  "Cancelar",
     "m112"  =>  "Ver",
+    "m113"  =>  "Desexa eliminar o proxecto",
+    "m114"  =>  "Seleccione unha opción",
+    "m115"  =>  "Aceptar",
+    "m116"  =>  "Desexa eliminala versión",
+    "m117"  =>  "Desexa eliminalo usuario",
     
     "err000"    =>  "Erro da aplicación",
     "err001"    =>  "Revise o seu e-mail, debe activar a súa conta para acceder",
@@ -154,6 +159,7 @@ return array(
     "err036"    =>  "Non se pode eliminar",
     "err037"    =>  "Non ten proyectos asignados",
     "err038"    =>  "Debe indicar e-mail e contrasinal",
+    "err039"    =>  "Páxina non atopada",
 );
 ?>
 

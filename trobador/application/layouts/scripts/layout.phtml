@@ -11,6 +11,7 @@
             $this->headScript()->appendFile("/js/dropdown.js");
             $this->headScript()->appendFile("/js/bootstrap-modal.js");
             $this->headScript()->appendFile("/js/jquery/jquery.blockUI.1.33.js");
+            $this->headScript()->appendFile("/js/jquery/blockUIModal.js");
             echo $this->headScript();
             echo $this->headLink();
             echo $this->jQuery();
@@ -65,19 +66,15 @@
                 <?=$this->footer()?>
             </footer>
             
-            <a id="btnModal" class="btn" >Launch Modal</a>
-            
             <div class="modal hide" id="myModal">
-                <div class="modal-header">
-                    <a id ="btnCerrarModal" class="close" data-dismiss="modal">&times;</a>
-                    <h3>Ventana</h3>
+                <div id="modal-header" class="modal-header">
+                    <a id ="btnCerrarModal" class="close closeTab">&times;</a>
                 </div>
                 <div class="modal-body">
-                    <p>Seleccione una opción</p>
+                    <p><?=Zend_Registry::get('Zend_Translate')->translate('m114')?></p>
                 </div>
-                <div class="modal-footer">
-                    <a href="#" id ="btnCerrarModal1" class="btn">Cancelar</a>
-                    <a href="#" id ="btnGuardarModal" class="btn btn-primary">Aceptar</a>
+                <div id="modal-footer" class="modal-footer">
+                    <a href="#" id ="btnCerrarModal1" class="btn"><?=Zend_Registry::get('Zend_Translate')->translate('m111')?></a>
                 </div>
             </div>
             

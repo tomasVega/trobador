@@ -2,7 +2,7 @@
     <h2><?=Zend_Registry::get('Zend_Translate')->translate('m003')?></h2>
     <center>
 <?      if(!$this->mensaje) { ?>
-        <table class="tabla">
+        <table id="tablaProyectos" class="tabla">
             <thead>
                 <tr>
                     <th><?=Zend_Registry::get('Zend_Translate')->translate('m049')?></th>
@@ -21,19 +21,20 @@
             </thead>
             <tbody>
                 <?  $tablaUsuarios = new Usuarios_Model_DbTable_Users();
+                    $i=0;
                     foreach ($this->proyectos as $proyecto){
                 ?>
-                    <tr>
-                        <td><a href="/proyectos/proyectos/verproyecto?idProyecto=<?=$proyecto['project_id']?>"><?=$proyecto['project_name']?></a></td>
-                        <td><?=$tablaUsuarios->getNamePorId($proyecto['user_id'])?></td>
-                        <td><?=$proyecto['percent_completed']."%"?></td>
-                        <td><?=$proyecto['creation_date']?></td>
-                        <?if ($acl->esAdmin($data['role_name'])) { ?>
-                            <td><a href="/proyectos/proyectos/eliminarproyecto?idProyecto=<?=$proyecto['project_id']?>"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
-                        <?}?>
-                    </tr>
-
-               <? } ?>
+                        <tr>
+                            <td><a href="/proyectos/proyectos/verproyecto?idProyecto=<?=$proyecto['project_id']?>"><?=$proyecto['project_name']?></a></td>
+                            <td><?=$tablaUsuarios->getNamePorId($proyecto['user_id'])?></td>
+                            <td><?=$proyecto['percent_completed']."%"?></td>
+                            <td><?=$proyecto['creation_date']?></td>
+                            <?if ($acl->esAdmin($data['role_name'])) { ?>
+                                <td><a id="btnModal<?=$i?>" onclick='addEliminarProyecto(<?=$proyecto['project_id']?>,"<?=Zend_Registry::get('Zend_Translate')->translate('m113')?>","<?=Zend_Registry::get('Zend_Translate')->translate('m115')?>")' href="#"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
+                            <?}?>
+                        </tr>
+                            
+               <?   $i = $i + 1;} ?>
             </tbody>
         </table>
 <?      } else {

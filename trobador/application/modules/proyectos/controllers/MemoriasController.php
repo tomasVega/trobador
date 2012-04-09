@@ -105,15 +105,31 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
                         $att_xmlT = $tuv->attributes('xml',1);
                         $idiomaCadenaTraducida = $att_xmlT['lang'];
                         
-                        //$cadenaOriginal = str_replace("\"","'",$cadenaOriginal);
-                        //$cadenaTraducida = str_replace("\"","'",$cadenaTraducida);
-                        $cadenaOriginal = html_entity_decode($cadenaOriginal, ENT_QUOTES, 'UTF-8');
-                        $cadenaTraducida = html_entity_decode($cadenaTraducida, ENT_QUOTES, 'UTF-8');
+//                        $cadenaOriginal = str_replace("\"","'",$cadenaOriginal);
+//                        $cadenaTraducida = str_replace("\"","'",$cadenaTraducida);
+//                        
+//                        $cadenaOriginal = str_replace("&amp;#169;","&copy;",$cadenaOriginal);
+//                        $cadenaTraducida = str_replace("&amp;#169;","&copy;",$cadenaTraducida);
+//                        $cadenaOriginal = str_replace("&amp;#234;","&copy;",$cadenaOriginal);
+//                        $cadenaTraducida = str_replace("&amp;#234;","&copy;",$cadenaTraducida);
                         
+//                        $cadenaOriginal = html_entity_decode($cadenaOriginal);
+//                        $cadenaTraducida = html_entity_decode($cadenaTraducida);
+                        
+                        $cadenaOriginal = htmlspecialchars_decode($cadenaOriginal);
+                        $cadenaTraducida = htmlspecialchars_decode($cadenaTraducida);
+                        
+                        //echo $cadenaTraducida;
+                        //$cadenaTraducida = htmlentities($cadenaTraducida);
+//                        $cadenaTraducida = htmlentities($cadenaTraducida);
+//                        echo "\n".$cadenaTraducida;
+//                        $cadenaTraducida = htmlspecialchars($cadenaTraducida);
+//                        echo "\n".$cadenaTraducida;
                         $this->_tablaMemorias->almacenarTranslationUnit($cadenaOriginal, $idiomaCadenaOriginal, $cadenaTraducida, $idiomaCadenaTraducida, $idVersion, $idUsuario, $comentario);
                     }
                     $i = $i + 1;
                 }
+                //exit;
             }
             $mensaje = Zend_Registry::get('Zend_Translate')->translate('m038');
         }

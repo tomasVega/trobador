@@ -98,22 +98,18 @@ class Proyectos_ProyectosController extends Zend_Controller_Action {
 
     public function verproyectostotalesAction() {
 
-        //if($this->_acl->tienePermiso($this->_userData['role_name'], "proyectos", "ver")){
+        $this->view->headTitle(Zend_Registry::get('Zend_Translate')->translate('m042'));
+        $mensaje = "";
 
-            $this->view->headTitle(Zend_Registry::get('Zend_Translate')->translate('m042'));
-            $mensaje = "";
+        $numProyectos = $this->_tablaProyectos->getNumProyectosTotal();
+        if($numProyectos > 0) {
+            $proyectos = $this->_tablaProyectos->getListaProyectos();
+            $this->view->proyectos = $proyectos;
+        } else {
+            $mensaje = Zend_Registry::get('Zend_Translate')->translate('err012');
+        }
 
-            $numProyectos = $this->_tablaProyectos->getNumProyectosTotal();
-            if($numProyectos > 0) {
-                $proyectos = $this->_tablaProyectos->getListaProyectos();
-                $this->view->proyectos = $proyectos;
-            } else {
-                $mensaje = Zend_Registry::get('Zend_Translate')->translate('err012');
-            }
-
-            $this->view->mensaje = $mensaje;
-
-        //}
+        $this->view->mensaje = $mensaje;
 
     }
 

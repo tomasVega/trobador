@@ -1,8 +1,3 @@
-/* 
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 $(document).ready(function() {
 
     // Mostrar form de crear nuevo usuario
@@ -25,20 +20,72 @@ $(document).ready(function() {
         
     });
     
-    $("#btnModal").click(function () {
-        $('#myModal').removeClass('hide');
-    });
+    
+
+
+    if(document.getElementById("tablaProyectos")){
+        var tablaProyectos = document.getElementById("tablaProyectos");
+        var linksProyectos = tablaProyectos.getElementsByTagName("A");
+        
+        for (var i = 0; i < linksProyectos.length; i++) {
+            $("#btnModal"+i).click(function () {
+                $.blockUIModal(); 
+                $('#myModal').removeClass('hide');
+            });
+        }
+    }
+    
+    if(document.getElementById("tablaVersiones")){
+        var tablaVersiones = document.getElementById("tablaVersiones");
+        var linksVersiones = tablaVersiones.getElementsByTagName("A");
+        
+        for (var j = 0; j < linksVersiones.length; j++) {
+            $("#btnModal"+j).click(function () {
+                $.blockUIModal(); 
+                $('#myModal').removeClass('hide');
+            });
+        }
+    }
+    
+    
+    if(document.getElementById("tablaUsuarios")){
+        var tablaUsuarios = document.getElementById("tablaUsuarios");
+        var linksUsuarios = tablaUsuarios.getElementsByTagName("A");
+        
+        for (var j = 0; j < linksUsuarios.length; j++) {
+            $("#btnModal"+j).click(function () {
+                $.blockUIModal(); 
+                $('#myModal').removeClass('hide');
+            });
+        }
+    }
+
+    
+    
+    
+    
     
     $("#btnCerrarModal").click(function () {
+        $.unblockUIModal();
         $('#myModal').addClass('hide');
+        $('#btnGuardarModal').remove();
+        $('#cabeceraPregunta').remove();
+        
     });
     
     $("#btnCerrarModal1").click(function () {
+        $.unblockUIModal();
         $('#myModal').addClass('hide');
+        $('#btnGuardarModal').remove();
+        $('#cabeceraPregunta').remove();
+        
     });
     
     $("#btnGuardarModal").click(function () {
+        $.unblockUIModal();
         $('#myModal').addClass('hide');
+        $('#btnGuardarModal').remove();
+        $('#cabeceraPregunta').remove();
     });
     
     
@@ -64,14 +111,14 @@ $(document).ready(function() {
         currentLink=document.getElementById(etiqueta)
 
         if(currentLink.enabledState){
-            alert('hey')
+            //alert('hey')
             currentLink.enabledState = false
             currentLink.onclick=function(){return false} // cancel default action of the link
 
             currentLink.className="disabled"
 
         } else {
-            alert('hou')
+            //alert('hou')
             currentLink.enabledState=true
             currentLink.onclick=function(){return true}
 
@@ -96,7 +143,7 @@ $(document).ready(function() {
                 togglelink(currentLink[num].id);
                 num++;
             }
-            alert('hola');
+            //alert('hola');
     });
     
  

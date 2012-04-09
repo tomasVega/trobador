@@ -2067,23 +2067,23 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   border-color: rgba(0, 0, 0, 0.15);
 }
 .modal-backdrop {
-  background-color: #000000;
   position: fixed;
   top: 0;
-  left: 0;
   right: 0;
   bottom: 0;
-  z-index: 10000;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
 }
 .modal-backdrop.fade {
   opacity: 0;
 }
-.modal-backdrop, .modal-backdrop.fade.in {
-  filter: alpha(opacity=80);
-  -khtml-opacity: 0.8;
-  -moz-opacity: 0.8;
+.modal-backdrop,
+.modal-backdrop.fade.in {
   opacity: 0.8;
+  filter: alpha(opacity=80);
 }
+
 .modal {
   position: fixed;
   top: 50%;
@@ -2094,9 +2094,6 @@ button.btn::-moz-focus-inner, input[type=submit].btn::-moz-focus-inner {
   background-color: #ffffff;
   border: 1px solid #999;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  *border: 1px solid #999;
-  /* IE6-7 */
-
   -webkit-border-radius: 6px;
   -moz-border-radius: 6px;
   border-radius: 6px;
@@ -2450,5 +2447,23 @@ h2 {
 
 .loading{
     background: url('./../imagenes/buttons6.png');
-    margin-top: 2000px;
+    margin-top: 20px;
+}
+
+.closeTab{
+    cursor: pointer;
+}
+
+.searchButton{
+    background: url('../imagenes/buttons6.png');
+    background-color: buttonface;
+    margin-top: 0px;
+    vertical-align: middle;
+    width: 29px;
+    height: 29px;
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 27px;
 }

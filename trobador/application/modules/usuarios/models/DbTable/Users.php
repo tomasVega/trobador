@@ -151,11 +151,13 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
         $select->from($this->_name,'name')->where("user_id = ?", $id);
 
         $rows = $this->fetchAll($select);
-        $row=$rows->getRow(0);
-        $nombre = $row['name'];
-
-        return $nombre;
-
+        if(count($rows) > 0){
+            $row=$rows->getRow(0);
+            $nombre = $row['name'];
+            return $nombre;
+        }else{
+            return null;
+        }
     }
 
     // Devuelve el user_id que concuerda con un determinado email
