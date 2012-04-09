@@ -135,10 +135,10 @@ CREATE TABLE translation_units(
 
 	translation_unit_id integer AUTO_INCREMENT not null PRIMARY KEY,
 	
-	original_unit varchar(500) not null,
+	original_unit varchar(5000) not null,
 	original_unit_language varchar(5) not null,
 	
-	translated_unit varchar(500) not null,
+	translated_unit varchar(5000) not null,
 	translated_unit_language varchar(5) not null,
 	upload_date timestamp not null default now(),
 	
