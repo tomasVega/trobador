@@ -1,0 +1,9 @@
+[Plugin]
+Loader=python
+Module=trobador
+IAge=3
+Name=Trobador
+Description=Plugin que emite sugerencias de traducción
+Authors=Tomás Vega Castro
+Copyright=Copyright © 2011 Tomás Vega Castro
+Version=1.0.0
