@@ -1,3 +1,6 @@
+Es necesario hacer crear un directorio dentro de la carpeta "public"
+El directorio debe llamarse "data" (mkdir data)
+
 La base de datos se adjunta en el archivo de nombre "trobador.sql"
 y el usuario para acceder a la aplicacion es "admin@admin.com" y con la
 contraseña "12345" (Sin las comillas)
