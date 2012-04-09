@@ -1,4 +1,4 @@
-Es necesario hacer crear un directorio dentro de la carpeta "public"
+Es necesario, si no existe, crear un directorio dentro de la carpeta "public".
 El directorio debe llamarse "data" (mkdir data)
 
 La base de datos se adjunta en el archivo de nombre "trobador.sql"
