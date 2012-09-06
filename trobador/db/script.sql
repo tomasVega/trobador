@@ -37,7 +37,7 @@ CREATE TABLE users(
 	role_id integer not null default 2,
 
 	-- Clave externa con la id del rol de usuario
-	FOREIGN KEY(role_id) REFERENCES roles(role_id) -- ON DELETE RESTRICT ON UPDATE CASCADE
+	FOREIGN KEY(role_id) REFERENCES roles(role_id)
 
 )ENGINE = MYISAM DEFAULT CHARSET=UTF8;
 
@@ -72,13 +72,13 @@ CREATE TABLE roles_resources_privileges(
 	PRIMARY KEY(role_id, resource_id, privilege_id),
 
 	-- Clave externa con la id del rol de usuario
-	FOREIGN KEY(role_id) REFERENCES roles(role_id), -- ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(role_id) REFERENCES roles(role_id),
 
 	-- Clave externa con la id del recurso
-	FOREIGN KEY(resource_id) REFERENCES resources(resource_id), -- ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(resource_id) REFERENCES resources(resource_id),
 
 	-- Clave externa con la id del privilegio
-	FOREIGN KEY(privilege_id) REFERENCES privileges(privilege_id) -- ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(privilege_id) REFERENCES privileges(privilege_id)
 
 )ENGINE = MYISAM DEFAULT CHARSET=UTF8;
 
@@ -93,7 +93,7 @@ CREATE TABLE projects(
 	user_id integer not null,
 
 	-- Clave externa con la id del usuario
-	FOREIGN KEY(user_id) REFERENCES users(user_id) -- ON DELETE RESTRICT ON UPDATE CASCADE
+	FOREIGN KEY(user_id) REFERENCES users(user_id)
 
 )ENGINE = MYISAM DEFAULT CHARSET=UTF8;
 
@@ -106,10 +106,10 @@ CREATE TABLE users_projects(
 	PRIMARY KEY(project_id, user_id),
 
 	-- Clave externa con la id del rol de usuario
-	FOREIGN KEY(project_id) REFERENCES projects(project_id), -- ON DELETE CASCADE ON UPDATE CASCADE,
+	FOREIGN KEY(project_id) REFERENCES projects(project_id),
 
 	-- Clave externa con la id del usuario
-	FOREIGN KEY(user_id) REFERENCES users(user_id) -- ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(user_id) REFERENCES users(user_id)
 
 )ENGINE = MYISAM DEFAULT CHARSET=UTF8;
 
@@ -124,9 +124,9 @@ CREATE TABLE versions(
 	creation_date timestamp not null default now(),
 
 	-- Clave externa con la id del usuario
-	FOREIGN KEY(user_id) REFERENCES users(user_id), -- ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(user_id) REFERENCES users(user_id),
 	-- Clave externa con la id del proyecto que engloba a la version
-	FOREIGN KEY(project_id) REFERENCES projects(project_id) -- ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(project_id) REFERENCES projects(project_id)
 	
 )ENGINE = MYISAM DEFAULT CHARSET=UTF8;
 
@@ -146,11 +146,11 @@ CREATE TABLE translation_units(
 
 	-- Clave externa con la id del usuario
 	user_id integer not null,
-	FOREIGN KEY(user_id) REFERENCES users(user_id), -- ON DELETE RESTRICT ON UPDATE CASCADE,
+	FOREIGN KEY(user_id) REFERENCES users(user_id),
 
 	-- Clave externa con la id de la version
 	version_id integer not null,
-	FOREIGN KEY(version_id) REFERENCES versions(version_id) -- ON DELETE CASCADE ON UPDATE CASCADE
+	FOREIGN KEY(version_id) REFERENCES versions(version_id)
 
 )ENGINE = MYISAM DEFAULT CHARSET=UTF8;
 
