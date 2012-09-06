@@ -1,9 +1,0 @@
-La base de datos se adjunta en el archivo de nombre "trobador.sql"
-y el usuario para acceder a la aplicacion es "admin@admin.com" y con la
-contraseña "12345" (Sin las comillas)
-
-Para probar la aplicacion es necesario modificar en la ruta
-"/pruebas/application/configs/applicaction.ini" el archivo
-".ini" estableciendo los parámetros "resources.db." según
-los propios.
-
