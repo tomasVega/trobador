@@ -119,6 +119,7 @@ return array(
     "m115"  =>  "Accept",
     "m116"  =>  "Do you want to remove the version",
     "m117"  =>  "Do you want to remove the user",
+    "m118"  =>  "Go back",
     
     "err000"    =>  "Application Error",
     "err001"    =>  "Check your e-mail, you must activate your account to access",

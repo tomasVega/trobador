@@ -1,5 +1,14 @@
 <div class="hero-unit">
-    <h2><?=Zend_Registry::get('Zend_Translate')->translate('m086')?></h2>
+    
+    <div style="float:right;">
+        <a id="linkVolver" href="/administracion/recursos/index">
+            <img height="35px" src="http://s7.postimage.org/got4jyvnb/volver.png" 
+            alt="<?=Zend_Registry::get('Zend_Translate')->translate('m118')?>"
+            title="<?=Zend_Registry::get('Zend_Translate')->translate('m118')?>"/>
+        </a>
+    </div>
+    
+    <h2 style="clear:both"><?=Zend_Registry::get('Zend_Translate')->translate('m086')?></h2>
     <center>
         <?
         //if($this->monte) {echo $this->monte;}

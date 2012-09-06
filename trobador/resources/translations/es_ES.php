@@ -119,6 +119,7 @@ return array(
     "m115"  =>  "Aceptar",
     "m116"  =>  "Desea eliminar la versión",
     "m117"  =>  "Desea eliminar el usuario",
+    "m118"  =>  "Volver",
     
     "err000"    =>  "Error de la aplicación",
     "err001"    =>  "Revise su e-mail, debe activar su cuenta para acceder",

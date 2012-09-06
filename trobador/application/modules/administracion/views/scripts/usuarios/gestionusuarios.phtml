@@ -1,6 +1,11 @@
 <div class="hero-unit">
     <h2><?=Zend_Registry::get('Zend_Translate')->translate('m008')?></h2>
-    <a id="linkNuevoUsuario" href="#"><?=Zend_Registry::get('Zend_Translate')->translate('m107')?></a>
+    <div style="float:right;margin-bottom: 10px;">
+        <a id="linkNuevoUsuario" href="#"><img height="35px" src="http://s16.postimage.org/6x0gxqg8x/nuevo_Usuario.png" 
+                                               alt="<?=Zend_Registry::get('Zend_Translate')->translate('m107')?>"
+                                               title="<?=Zend_Registry::get('Zend_Translate')->translate('m107')?>"/>
+        </a>
+    </div>
     <center>
 <?  if($this->usuarioRegistrado) {
         echo $this->usuarioRegistrado;
