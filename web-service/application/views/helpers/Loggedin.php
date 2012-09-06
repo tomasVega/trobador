@@ -1,11 +1,11 @@
 <?php
 
-class Application_View_Helper_Loggedin extends Zend_View_Helper_Abstract {
-
-    public function loggedin() {
-
+class Application_View_Helper_Loggedin extends Zend_View_Helper_Abstract
+{
+    public function loggedin()
+    {
         $menuLoggedIn = '';
-        
+
         $auth = Zend_Auth::getInstance();
         $data = $auth->getStorage()->read();
         $menuLoggedIn .= "<ul class='nav secondary-nav'>
@@ -19,10 +19,9 @@ class Application_View_Helper_Loggedin extends Zend_View_Helper_Abstract {
                 </ul>
             </li>
         </ul>";
-        
+
         return $menuLoggedIn;
-        
+
     }
 
 }
-?>

@@ -1,16 +1,15 @@
 <?php
 
-
-class Application_View_Helper_Menuadmin extends Zend_View_Helper_Abstract {
-
-    public function menuAdmin() {
-
+class Application_View_Helper_Menuadmin extends Zend_View_Helper_Abstract
+{
+    public function menuAdmin()
+    {
         $menuAdmin = '';
 
         $acl = new Usuarios_Model_Acl();
         $auth = Zend_Auth::getInstance();
         $data = $auth->getStorage()->read();
-        if(Zend_Auth::getInstance()->hasIdentity() && $acl->esAdmin($data['role_name'])){ 
+        if (Zend_Auth::getInstance()->hasIdentity() && $acl->esAdmin($data['role_name'])) {
             $menuAdmin .= "<div class='pull-left'>
                 <ul class='nav secondary-nav'>
                     <li class='dropdown'>
@@ -25,11 +24,9 @@ class Application_View_Helper_Menuadmin extends Zend_View_Helper_Abstract {
                 </ul>
             </div>";
         }
-        
+
         return $menuAdmin;
 
     }
 
 }
-
-?>

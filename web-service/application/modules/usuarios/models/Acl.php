@@ -1,8 +1,8 @@
 <?php
 class Usuarios_Model_Acl extends Zend_Acl
 {
-    public function __construct() {
-
+    public function __construct()
+    {
         $tablaRecursos = new Administracion_Model_DbTable_Resources();
         $tablaRoles = new Administracion_Model_DbTable_Roles();
         $tablaPrivilegios = new Administracion_Model_DbTable_Privileges();
@@ -11,34 +11,33 @@ class Usuarios_Model_Acl extends Zend_Acl
         $this->setRoles();
         $this->setRecursos();
         $this->setPrivilegios();
-        
+
     }
 
-
-    protected function setRoles() {
-
+    protected function setRoles()
+    {
         $tablaRoles = new Administracion_Model_DbTable_Roles();
-        
+
         $roles = $tablaRoles->getRoles();
-        foreach($roles as $rol){
+        foreach ($roles as $rol) {
             $this->addRole(new Zend_Acl_Role($rol['role_name']));
         }
 
     }
 
-    protected function setRecursos() {
-
+    protected function setRecursos()
+    {
         $tablaRecursos = new Administracion_Model_DbTable_Resources();
 
         $recursos = $tablaRecursos->getRecursos();
-        foreach($recursos as $recurso){
+        foreach ($recursos as $recurso) {
             $this->add(new Zend_Acl_Resource($recurso['resource_name']));
         }
 
     }
 
-    protected function setPrivilegios() {
-
+    protected function setPrivilegios()
+    {
         $tablaRecursos = new Administracion_Model_DbTable_Resources();
         $tablaRoles = new Administracion_Model_DbTable_Roles();
         $tablaPrivilegios = new Administracion_Model_DbTable_Privileges();
@@ -58,8 +57,8 @@ class Usuarios_Model_Acl extends Zend_Acl
 
     }
 
-    public function tienePermiso($rol, $recurso, $privilegio){
-
+    public function tienePermiso($rol, $recurso, $privilegio)
+    {
         if ($rol == null) {
             $rol = 'invitado';
         }
@@ -72,8 +71,8 @@ class Usuarios_Model_Acl extends Zend_Acl
 
     }
 
-    public function esAdmin($rol) {
-
+    public function esAdmin($rol)
+    {
         if ($rol == 'administrador') {
             return true;
         } else {
@@ -82,8 +81,8 @@ class Usuarios_Model_Acl extends Zend_Acl
 
     }
 
-    public function esUsuarioSinRegistrar($rol){
-
+    public function esUsuarioSinRegistrar($rol)
+    {
         if ($rol == 'invitado') {
             return true;
         } else {
@@ -91,5 +90,5 @@ class Usuarios_Model_Acl extends Zend_Acl
         }
 
     }
-    
+
 }

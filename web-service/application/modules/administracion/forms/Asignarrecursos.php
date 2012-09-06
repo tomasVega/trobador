@@ -1,18 +1,17 @@
 <?php
 
-class Administracion_Form_Asignarrecursos extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Administracion_Form_Asignarrecursos extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         $tablaRolesRecursosPrivilegios = new Administracion_Model_DbTable_Rolesresourcesprivileges();
-        if($options != null){
+        if ($options != null) {
             $existe = $tablaRolesRecursosPrivilegios->existeRolRecursoPrivilegio($options['role_id'], $options['resource_id'], $options['privilege_id']);
         } else {
             $existe =  false;
         }
-
 
         //@TODO probar elementos como hidden
 
@@ -25,12 +24,12 @@ class Administracion_Form_Asignarrecursos extends Zend_Form {
 
         //Elementos del formulario
         $permiso = new Zend_Form_Element_Checkbox('permiso');
-        
+
         /*$this->setAttrib('role_id', $options['role_id']);
         $this->setAttrib('resource_id', $options['resource_id']);
         $this->setAttrib('privilege_id', $options['privilege_id']);*/
         //$permiso->setAttrib('id', 'permiso'.$options['role_id'].$options['resource_id'].$options['privilege_id']);
-        if($existe){
+        if ($existe) {
             //$permiso->setValue("debur");
             $permiso->setChecked(true);
         } else {
@@ -70,6 +69,3 @@ class Administracion_Form_Asignarrecursos extends Zend_Form {
     }
 
 }
-
-?>
-

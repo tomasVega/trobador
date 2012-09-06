@@ -1,9 +1,9 @@
 <?php
 
-class Proyectos_Form_Nuevoproyecto extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Proyectos_Form_Nuevoproyecto extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -35,7 +35,6 @@ class Proyectos_Form_Nuevoproyecto extends Zend_Form {
         //Añadir elementos creados al formulario
         $this->addElements(array($name, $version, $submit));
 
-
         //Eliminar decoradores (Formatear form)
         $this->setElementDecorators(array(
             'ViewHelper',
@@ -56,6 +55,5 @@ class Proyectos_Form_Nuevoproyecto extends Zend_Form {
             'Form',
         ));
     }
-    
+
 }
-?>

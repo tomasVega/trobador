@@ -1,9 +1,9 @@
 <?php
 
-class Proyectos_Form_Nuevaversion extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Proyectos_Form_Nuevaversion extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -11,7 +11,6 @@ class Proyectos_Form_Nuevaversion extends Zend_Form {
         $this->setMethod('post');
         $this->setName('frmNuevaVersion');
 
-        
         //Elementos del formulario
         $name = $this->createElement('text', 'nombreVersion');
         $name->setLabel(Zend_Registry::get('Zend_Translate')->translate('m049').': ');
@@ -22,7 +21,6 @@ class Proyectos_Form_Nuevaversion extends Zend_Form {
             new Zend_Filter_StringTrim(),
         ));
 
-        
         $proyectos = new Zend_Form_Element_Select('proyecto');
         $proyectos->setLabel(Zend_Registry::get('Zend_Translate')->translate('m029').': ');
         $proyectos->setRequired(true);
@@ -36,10 +34,8 @@ class Proyectos_Form_Nuevaversion extends Zend_Form {
         foreach ($tablaProyectos->getListaProyectos() as $p) {
             $proyectos->addMultiOption($p->project_id, $p->project_name);
         }
-        
 
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m050')));
-
 
         //Añadir elementos creados al formulario
         $this->addElements(array($name, $proyectos, $submit));
@@ -67,4 +63,3 @@ class Proyectos_Form_Nuevaversion extends Zend_Form {
     }
 
 }
-?>

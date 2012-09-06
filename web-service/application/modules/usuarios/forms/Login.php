@@ -1,15 +1,15 @@
 <?php
 
-class Usuarios_Form_Login extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Usuarios_Form_Login extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
         $this->setName('frmLogin');
         $this->setAction('/usuarios/usuarios/login');
-        $this->setMethod('post'); 
+        $this->setMethod('post');
 
         //Elementos del formulario
         $email=$this->createElement('text', 'email');
@@ -23,7 +23,6 @@ class Usuarios_Form_Login extends Zend_Form {
             new Zend_Filter_StringToLower(),
         ));
         $email->class="input-medium";
-
 
         $pass=$this->createElement('password', 'password');
         $pass->setAttrib("placeholder", Zend_Registry::get('Zend_Translate')->translate('m065'));
@@ -39,7 +38,6 @@ class Usuarios_Form_Login extends Zend_Form {
         //Añadir elementos creados al formulario
         $this->addElements(array($email, $pass, $submit));
 
-
         //Eliminar decoradores (Formatear form)
         $this->setElementDecorators(
             array(
@@ -51,7 +49,6 @@ class Usuarios_Form_Login extends Zend_Form {
             'FormElements',
             'Form',
         ));
-        
+
     }
 }
-?>

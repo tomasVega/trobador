@@ -1,5 +1,5 @@
 <?php
-/* 
+/*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
@@ -9,10 +9,10 @@
  *
  * @author tommy
  */
-class Application_View_Helper_Headersdescriptivos extends Zend_View_Helper_Abstract {
-
-    public function headersdescriptivos() {
-
+class Application_View_Helper_Headersdescriptivos extends Zend_View_Helper_Abstract
+{
+    public function headersdescriptivos()
+    {
         return '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
                 <!-- Breve descripción de la web -->
                 <meta http-equiv="description" content=""/>
@@ -31,4 +31,3 @@ class Application_View_Helper_Headersdescriptivos extends Zend_View_Helper_Abstr
     }
 
 }
-?>

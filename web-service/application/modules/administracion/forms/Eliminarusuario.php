@@ -1,9 +1,9 @@
 <?php
 
-class Administracion_Form_Eliminarusuario extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Administracion_Form_Eliminarusuario extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -40,5 +40,3 @@ class Administracion_Form_Eliminarusuario extends Zend_Form {
     }
 
 }
-
-?>

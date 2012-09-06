@@ -2,12 +2,12 @@
 
 class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
 {
-    
-    protected $_name = 'versions';
-    
-    // Guarda una versión de un proyecto
-    public function almacenarVersion($nombre, $idUsuario, $idProyecto) {
 
+    protected $_name = 'versions';
+
+    // Guarda una versión de un proyecto
+    public function almacenarVersion($nombre, $idUsuario, $idProyecto)
+    {
         $data = array('version_name' => $nombre,
                     'user_id' => $idUsuario,
                     'project_id' => $idProyecto,);
@@ -16,8 +16,8 @@ class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
     }
 
     // Devuelve las versiones asociadas a un proyecto
-    public function getListaVersionesProyectoPorId($idProyecto) {
-
+    public function getListaVersionesProyectoPorId($idProyecto)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("project_id = ?", $idProyecto);
 
@@ -26,10 +26,10 @@ class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
         return $rows;
 
     }
-    
-    // Devuelve el nombre de version segun su id
-    public function getNombreVersionPorId($idVersion){
 
+    // Devuelve el nombre de version segun su id
+    public function getNombreVersionPorId($idVersion)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("version_id = ?", $idVersion);
 
@@ -39,13 +39,12 @@ class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
         $nombre = $row['version_name'];
 
         return $nombre;
-        
+
     }
 
-
     // Devuelve la version asociada a un proyecto
-    public function getIdVersionProyectoPorNombre($nombreVersion, $idProyecto) {
-
+    public function getIdVersionProyectoPorNombre($nombreVersion, $idProyecto)
+    {
         $select = $this->select();
         $select->from($this->_name)
                 ->where("project_id = ?", $idProyecto)
@@ -61,8 +60,8 @@ class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
     }
 
     // Devuelve el número de versiones de un proyecto
-    public function getNumVersionesPorId($idProyecto){
-
+    public function getNumVersionesPorId($idProyecto)
+    {
         $select=$this->select();
         $select->from($this->_name, array("num"=>"COUNT(*)"))->where("project_id = ?", $idProyecto);
 
@@ -72,8 +71,8 @@ class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
     }
 
     // Comprueba si existe una determinada versión de un proyecto
-    public function existeVersion($nombre, $idProyecto) {
-
+    public function existeVersion($nombre, $idProyecto)
+    {
         $select=$this->select();
         $select->from($this->_name)
                 ->where("version_name = ?", $nombre)
@@ -82,33 +81,33 @@ class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
         $rows = $this->fetchAll($select);
         $count=$rows->count();
 
-        if($count>0){
+        if ($count>0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
 
     // Elimina una versión
-    public function eliminarVersion($idVersion){
-
+    public function eliminarVersion($idVersion)
+    {
         $this->_db->delete($this->_name, 'version_id = '.$idVersion);
 
     }
 
     // Se eliminan las versiones correspodientes al proyecto y las cadenas de las versiones
-    public function eliminarVersiones($idProyecto){
-
+    public function eliminarVersiones($idProyecto)
+    {
         $tablaCadenas = new Proyectos_Model_DbTable_Translationunits();
         $versiones = $this->getListaVersionesProyectoPorId($idProyecto);
 
-        foreach($versiones as $version){
+        foreach ($versiones as $version) {
             $tablaCadenas->eliminarCadenasVersion($version['version_id']);
         }
 
         $this->_db->delete($this->_name, 'project_id = '.$idProyecto);
-        
+
     }
 
 }

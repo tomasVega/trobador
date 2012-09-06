@@ -1,9 +1,9 @@
 <?php
 
-class Administracion_Form_Nuevousuario extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Administracion_Form_Nuevousuario extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -38,7 +38,7 @@ class Administracion_Form_Nuevousuario extends Zend_Form {
 
         //Lee los roles de la BBDD
         foreach ($tablaRoles->getRoles() as $rol) {
-            if($rol['role_name'] != 'invitado'){
+            if ($rol['role_name'] != 'invitado') {
                 $roles->addMultiOption($rol['role_id'], $rol['role_name']);
             }
         }
@@ -51,9 +51,8 @@ class Administracion_Form_Nuevousuario extends Zend_Form {
         $activo->setValue($options['activated']);
         $activo->class="small";
 
-
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m093')));
-        
+
         //Añadir elementos creados al formulario
         $this->addElements(array($nombre, $email, $roles, $activo, $submit));
 
@@ -75,7 +74,3 @@ class Administracion_Form_Nuevousuario extends Zend_Form {
     }
 
 }
-
-?>
-
-

@@ -1,12 +1,12 @@
 <?php
 
-class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
-
+class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract
+{
     protected $_name = 'projects';
-    
-    // Guarda un proyecto
-    public function almacenarProyecto($nombre, $idUsuario) {
 
+    // Guarda un proyecto
+    public function almacenarProyecto($nombre, $idUsuario)
+    {
         $data = array('project_name' => $nombre,
                     'user_id' => $idUsuario,);
 
@@ -14,8 +14,8 @@ class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
     }
 
     // Devuelve la lista de proyectos total
-    public function getListaProyectos() {
-
+    public function getListaProyectos()
+    {
         $select = $this->select();
         $select->from($this->_name);
 
@@ -26,29 +26,29 @@ class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
     }
 
     // Devuelve la lista de proyectos de un usuario
-    public function getListaProyectosPorIdUsuario($idUsuario) {
-
+    public function getListaProyectosPorIdUsuario($idUsuario)
+    {
         $sql = 'SELECT p.project_id, p.user_id, p.project_name, p.percent_completed, p.creation_date
                 FROM projects p, users_projects uP
                 WHERE p.project_id = uP.project_id AND uP.user_id = '.$idUsuario;
 
         $rows = $this->_db->fetchAll($sql);
-        
+
         return $rows;
-        
+
     }
 
     // Devuelve el id del proyecto según su nombre
-    public function getIdProyectoPorNombre($nombreProyecto){
-
+    public function getIdProyectoPorNombre($nombreProyecto)
+    {
         $select = $this->select();
         $select->from($this->_name,'project_id')->where("project_name = ?", $nombreProyecto);
 
         $rows = $this->fetchAll($select);
-        if($rows->count() > 0) {
+        if ($rows->count() > 0) {
             $row = $rows->getRow(0);
             $projectId = $row['project_id'];
-            
+
             return $projectId;
         } else {
             return null;
@@ -57,8 +57,8 @@ class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
     }
 
     // Devuelve el proyecto según su id
-    public function getProyectoPorId($idProyecto){
-
+    public function getProyectoPorId($idProyecto)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("project_id = ?", $idProyecto);
 
@@ -66,12 +66,12 @@ class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
         $row = $rows->getRow(0);
 
         return $row;
-        
-    }
-    
-    // Devuelve el proyecto según su id
-    public function getNombreProyectoPorId($idProyecto){
 
+    }
+
+    // Devuelve el proyecto según su id
+    public function getNombreProyectoPorId($idProyecto)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("project_id = ?", $idProyecto);
 
@@ -81,12 +81,12 @@ class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
         $nombre = $row['project_name'];
 
         return $nombre;
-        
+
     }
 
     // Devuelve el número de proyectos
-    public function getNumProyectosTotal(){
-
+    public function getNumProyectosTotal()
+    {
         $select = $this->select();
         $select->from($this->_name, array("num"=>"COUNT(*)"));
 
@@ -95,10 +95,9 @@ class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
         return $rowsNum['num'];
     }
 
-
     // Devuelve el número de proyectos
-    public function getNumProyectosPorIdUsuario($idUsuario){
-
+    public function getNumProyectosPorIdUsuario($idUsuario)
+    {
         $select = $this->select();
         $select->from($this->_name, array("num"=>"COUNT(*)"))->where("user_id = ?", $idUsuario);
 
@@ -108,25 +107,25 @@ class Proyectos_Model_DbTable_Projects extends Zend_Db_Table_Abstract {
     }
 
     // Comprueba si existe un determinado proyecto buscando por nombre
-    public function existeProyecto($nombre) {
-
+    public function existeProyecto($nombre)
+    {
         $select=$this->select();
         $select->from($this->_name)->where("project_name = ?", $nombre);
 
         $rows = $this->fetchAll($select);
         $count=$rows->count();
 
-        if($count>0){
+        if ($count>0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
 
     // Elimina un proyecto
-    public function eliminarProyecto($idProyecto){
-
+    public function eliminarProyecto($idProyecto)
+    {
         $this->_db->delete($this->_name, 'project_id = '.$idProyecto);
 
     }

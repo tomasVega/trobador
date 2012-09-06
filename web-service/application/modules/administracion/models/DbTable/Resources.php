@@ -5,8 +5,8 @@ class Administracion_Model_DbTable_Resources extends Zend_Db_Table_Abstract
 
     protected $_name = 'resources';
 
-    public function getRecursos() {
-
+    public function getRecursos()
+    {
         $select = $this->select();
         $select->from($this->_name);
 
@@ -15,10 +15,9 @@ class Administracion_Model_DbTable_Resources extends Zend_Db_Table_Abstract
         return $rows;
 
     }
-    
-    
-    public function getRecursoPorId($recursoId){
 
+    public function getRecursoPorId($recursoId)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("resource_id = ?", $recursoId);
 
@@ -29,8 +28,8 @@ class Administracion_Model_DbTable_Resources extends Zend_Db_Table_Abstract
 
     }
 
-    public function guardarRecurso($nombreRecurso, $descripcion){
-
+    public function guardarRecurso($nombreRecurso, $descripcion)
+    {
         $data = array('resource_name' => $nombreRecurso,
                     'resource_description' => $descripcion);
 
@@ -38,25 +37,25 @@ class Administracion_Model_DbTable_Resources extends Zend_Db_Table_Abstract
 
     }
 
-    public function existeRecurso($nombreRecurso){
-
+    public function existeRecurso($nombreRecurso)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("resource_name = ?", $nombreRecurso);
 
         $rows = $this->fetchAll($select);
         $count = $rows->count();
 
-        if($count > 0){
+        if ($count > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
 
     // Devuelve el número de recursos
-    public function getNumRecursos(){
-
+    public function getNumRecursos()
+    {
         $select = $this->select();
         $select->from($this->_name, array("num"=>"COUNT(*)"));
 
@@ -66,12 +65,10 @@ class Administracion_Model_DbTable_Resources extends Zend_Db_Table_Abstract
     }
 
     // Elimina un recurso
-    public function eliminarRecurso($idRecurso){
-
+    public function eliminarRecurso($idRecurso)
+    {
         $this->_db->delete($this->_name, 'resource_id = '.$idRecurso);
 
     }
-
-
 
 }

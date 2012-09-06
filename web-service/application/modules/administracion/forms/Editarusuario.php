@@ -1,9 +1,9 @@
 <?php
 
-class Administracion_Form_Editarusuario extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Administracion_Form_Editarusuario extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -35,10 +35,10 @@ class Administracion_Form_Editarusuario extends Zend_Form {
         $roles->setRequired(true);
 
         $tablaRoles = new Administracion_Model_DbTable_Roles();
-        
+
         //Lee los roles de la BBDD
         foreach ($tablaRoles->getRoles() as $rol) {
-            if($rol['role_name'] != 'invitado'){
+            if ($rol['role_name'] != 'invitado') {
                 $roles->addMultiOption($rol['role_id'], $rol['role_name']);
             }
         }
@@ -55,8 +55,6 @@ class Administracion_Form_Editarusuario extends Zend_Form {
         $idUsuario = new Zend_Form_Element_Hidden('user_id');
         $idUsuario->setValue($options['user_id']);
         $idUsuario->setDisableLoadDefaultDecorators(true);
-        
-
 
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m095')));
 
@@ -82,6 +80,3 @@ class Administracion_Form_Editarusuario extends Zend_Form {
     }
 
 }
-
-?>
-

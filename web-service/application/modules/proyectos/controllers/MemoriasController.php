@@ -1,34 +1,34 @@
 <?php
 
-class Proyectos_MemoriasController extends Zend_Controller_Action {
-
+class Proyectos_MemoriasController extends Zend_Controller_Action
+{
     protected $_tablaVersiones = null;
     protected $_tablaMemorias = null;
     protected $_userData = null;
 
-    public function init() {
-        
+    public function init()
+    {
         $this->_tablaVersiones = new Proyectos_Model_DbTable_Versions();
         $this->_tablaMemorias = new Proyectos_Model_DbTable_Translationunits();
         $this->_acl = new Usuarios_Model_Acl();
-        
+
         $auth = Zend_Auth::getInstance();
         $this->_userData = $auth->getStorage()->read();
-        
+
     }
 
-    public function subirmemoriaAction() {
-         
+    public function subirmemoriaAction()
+    {
         // Comprobación de permisos
-        if($this->_acl->tienePermiso($this->_userData['role_name'], 'cadenas', 'crear')) {
-        
+        if ($this->_acl->tienePermiso($this->_userData['role_name'], 'cadenas', 'crear')) {
+
             $this->view->headTitle(Zend_Registry::get('Zend_Translate')->translate('m004'));
             $formularioNuevaMemoria = new Proyectos_Form_Nuevamemoria();
 
             //Si se reciben datos por post
-            if($this->getRequest()->isPost()){
+            if ($this->getRequest()->isPost()) {
                 //Si los datos recibidos son válidos
-                if($formularioNuevaMemoria->isValid($_POST)){
+                if ($formularioNuevaMemoria->isValid($_POST)) {
                     //Valores del formulario
                     $data = $formularioNuevaMemoria->getValues();
                     //Datos del usuario
@@ -50,18 +50,19 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
             }
 
             $this->view->form = $formularioNuevaMemoria;
-            
+
         } else {
             $this->_redirect('administracion/recursos/errorpermisos');
         }
 
     }
 
-    private function comprobarExtension($nombreArchivo) {
+    private function comprobarExtension($nombreArchivo)
+    {
         // @todo comprobar patron exp reg
         $patron = '/\.zip$/i';
 
-        if(preg_match($patron, $nombreArchivo)){
+        if (preg_match($patron, $nombreArchivo)) {
             return true;// si es .zip
         } else {
             return false;
@@ -69,8 +70,8 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
 
     }
 
-    private function extraerCadenasXml($nombreArchivo, $idUsuario, $idVersion) {
-
+    private function extraerCadenasXml($nombreArchivo, $idUsuario, $idVersion)
+    {
         // Carga un archivo XML
         //var_dump(UPLOAD_PATH.$nombreArchivo);exit;
         $tmx = new SimpleXMLElement(UPLOAD_PATH.$nombreArchivo, null, true);
@@ -79,7 +80,7 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
         if (!$tmx) {
             // @todo
             //echo "Error cargando XML\n";
-            //foreach(libxml_get_errors() as $error) {
+            //foreach (libxml_get_errors() as $error) {
                 //echo "\t", $error->message;
             //}
             $mensaje = Zend_Registry::get('Zend_Translate')->translate('err006');
@@ -87,10 +88,10 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
             $body = $tmx->body;
 
             //Almacenar las cadenas de traduccion
-            foreach($body->tu as $tu){
+            foreach ($body->tu as $tu) {
 
                 $comentario = null;
-                if($tu->note){
+                if ($tu->note) {
                     $comentario = $tu->note;
                 }
 
@@ -99,26 +100,26 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
                 $idiomaCadenaOriginal = $att_xmlO['lang'];
                 $i = 0;
 
-                foreach($tu->tuv as $tuv){
-                    if(!$i == 0){
+                foreach ($tu->tuv as $tuv) {
+                    if (!$i == 0) {
                         $cadenaTraducida = $tuv->seg;
                         $att_xmlT = $tuv->attributes('xml',1);
                         $idiomaCadenaTraducida = $att_xmlT['lang'];
-                        
+
 //                        $cadenaOriginal = str_replace("\"","'",$cadenaOriginal);
 //                        $cadenaTraducida = str_replace("\"","'",$cadenaTraducida);
-//                        
+//
 //                        $cadenaOriginal = str_replace("&amp;#169;","&copy;",$cadenaOriginal);
 //                        $cadenaTraducida = str_replace("&amp;#169;","&copy;",$cadenaTraducida);
 //                        $cadenaOriginal = str_replace("&amp;#234;","&copy;",$cadenaOriginal);
 //                        $cadenaTraducida = str_replace("&amp;#234;","&copy;",$cadenaTraducida);
-                        
+
 //                        $cadenaOriginal = html_entity_decode($cadenaOriginal);
 //                        $cadenaTraducida = html_entity_decode($cadenaTraducida);
-                        
+
                         $cadenaOriginal = htmlspecialchars_decode($cadenaOriginal);
                         $cadenaTraducida = htmlspecialchars_decode($cadenaTraducida);
-                        
+
                         //echo $cadenaTraducida;
                         //$cadenaTraducida = htmlentities($cadenaTraducida);
 //                        $cadenaTraducida = htmlentities($cadenaTraducida);
@@ -135,9 +136,10 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
         }
 
     }
-    
+
     // Eliminar los archivos subidos en caso de error
-    private function rrmdir($dir) {
+    private function rrmdir($dir)
+    {
         if (is_dir($dir)) {
             $objects = scandir($dir);
             foreach ($objects as $object) {
@@ -150,8 +152,8 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
         }
     }
 
-    private function extraerZip($nombreArchivo) {
-
+    private function extraerZip($nombreArchivo)
+    {
         $zip = new ZipArchive;
         if ($zip->open(UPLOAD_PATH.$nombreArchivo) === TRUE) {
             $zip->extractTo(UPLOAD_PATH);
@@ -162,37 +164,38 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
 
             $zip = zip_open(UPLOAD_PATH.$nombreArchivo);
 
-            while ($archivo = zip_read($zip)){
-                if(!strpos(zip_entry_name($archivo), DIRECTORY_SEPARATOR)){
+            while ($archivo = zip_read($zip)) {
+                if (!strpos(zip_entry_name($archivo), DIRECTORY_SEPARATOR)) {
                     $names[$i] = zip_entry_name($archivo);
                     $i = $i +1;
                 } else {
                     $indice = strpos(zip_entry_name($archivo), DIRECTORY_SEPARATOR);
                     $dir = substr(zip_entry_name($archivo), 0, $indice+1);
                     $this->rrmdir(UPLOAD_PATH.$dir);
+
                     return 0;
                 }
             }
-            
+
             zip_close($zip);
+
             return $names;
 
         } else {
             return null;
         }
-        
-    }
-    
 
-    public function parseararchivoAction() {
-        
+    }
+
+    public function parseararchivoAction()
+    {
         // Comprobación de permisos
-        if($this->_acl->tienePermiso($this->_userData['role_name'], 'cadenas', 'crear')) {
+        if ($this->_acl->tienePermiso($this->_userData['role_name'], 'cadenas', 'crear')) {
             $mensaje = "";
-            if($this->getRequest()->getParam('user_id') != null 
-                    && $this->getRequest()->getParam('version_id') != null 
+            if($this->getRequest()->getParam('user_id') != null
+                    && $this->getRequest()->getParam('version_id') != null
                     && $this->getRequest()->getParam('archivo')) {
-                
+
                 $this->view->headTitle(Zend_Registry::get('Zend_Translate')->translate('m039'));
 
                 $idUsuario = $this->getRequest()->getParam('user_id');
@@ -204,12 +207,12 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
                 if ($this->comprobarExtension($nombreArchivo)) {
 
                     $names = $this->extraerZip($nombreArchivo);
-                    if($names != null && $names != 0){
+                    if ($names != null && $names != 0) {
                         // Al subir un archivo de una versión existente se eliminan todas las cadenas anteriores
                         $this->_tablaMemorias->eliminarCadenasVersion($idVersion);
 
                         $j = 0;
-                        while($j < sizeof($names)){
+                        while ($j < sizeof($names)) {
                             //var_dump($names[$j]);exit;
                             $this->extraerCadenasXml($names[$j], $idUsuario, $idVersion);
                             // Eliminar archivo
@@ -217,7 +220,7 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
                             $j = $j +1;
                         }
                         $mensaje = Zend_Registry::get('Zend_Translate')->translate('m038');
-                    } else if($names == 0){
+                    } elseif ($names == 0) {
                         $mensaje = Zend_Registry::get('Zend_Translate')->translate('err007');
                     } else {
                         $mensaje = Zend_Registry::get('Zend_Translate')->translate('err008');
@@ -232,28 +235,25 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
 
                 //Eliminar fichero real del servidor
                 unlink(UPLOAD_PATH.$nombreArchivo);
-                
-            
+
             } else {
                 $mensaje = Zend_Registry::get('Zend_Translate')->translate('err009');
             }
-            
+
             $this->view->mensaje = $mensaje;
-            
+
         } else {
             $this->_redirect('administracion/recursos/errorpermisos');
         }
 
     }
-    
 
-    function ajaxAction(){
-
+    public function ajaxAction()
+    {
         $this->_helper->viewRenderer->setNoRender();
         $this->_helper->layout->disableLayout();
 
-        if (!$this->getRequest()->isXmlHttpRequest())
-        {
+        if (!$this->getRequest()->isXmlHttpRequest()) {
             $this->_redirect('/buscador/buscador');
         }
 
@@ -272,6 +272,5 @@ class Proyectos_MemoriasController extends Zend_Controller_Action {
         echo Zend_Json::encode($jsondata);
 
     }
-
 
 }

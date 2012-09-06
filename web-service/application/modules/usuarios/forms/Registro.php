@@ -1,16 +1,15 @@
 <?php
 
-class Usuarios_Form_Registro extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Usuarios_Form_Registro extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
         //Config del formulario
         $this->setAction('/usuarios/usuarios/registro');
         $this->setMethod('post');
         $this->setName('frmRegistro');
 
-        
         //Elementos del formulario
         $email = $this->createElement('text', 'email');
         $email->setLabel(Zend_Registry::get('Zend_Translate')->translate('m064').': ');
@@ -23,21 +22,18 @@ class Usuarios_Form_Registro extends Zend_Form {
             new Zend_Filter_StringToLower(),
         ));
 
-
         $pass = $this->createElement('password', 'password');
         $pass->setLabel(Zend_Registry::get('Zend_Translate')->translate('m065').': ');
         $pass->setRequired(true);
         $pass->setAttrib('size', 20);
         $pass->setAttrib('maxlength', 200);
 
-        
         $pass1 = $this->createElement('password', 'password1');
         $pass1->setLabel(Zend_Registry::get('Zend_Translate')->translate('m062').': ');
         $pass1->setRequired(true);
         $pass1->addValidator('Identical', false, array('token' => 'password'));
         $pass1->setAttrib('size', 20);
         $pass1->setAttrib('maxlength', 200);
-
 
         $nombre = $this->createElement('text', 'name');
         $nombre->setLabel(Zend_Registry::get('Zend_Translate')->translate('m049').': ');
@@ -50,7 +46,6 @@ class Usuarios_Form_Registro extends Zend_Form {
         //Añadir elementos creados al formulario
         $this->addElements(array($email, $nombre, $pass, $pass1,  $submit));
 
-        
         //Eliminar decoradores (Formatear form)
         $this->setElementDecorators(array(
             'ViewHelper',
@@ -70,8 +65,6 @@ class Usuarios_Form_Registro extends Zend_Form {
             array('HtmlTag', array('tag' => 'table')),
             'Form',
         ));
-        
-    }  
-}
 
-?>
+    }
+}

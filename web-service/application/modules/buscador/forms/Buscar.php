@@ -1,15 +1,14 @@
 <?php
 
-class Buscador_Form_Buscar extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Buscador_Form_Buscar extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
         //Config del formulario
         $this->setName('frmBuscador');
         $this->setAction('/buscador/buscador/index');
         $this->setMethod('post');
-
 
         //Elementos del formulario
         $cadena = $this->createElement('text','cadena');
@@ -20,20 +19,19 @@ class Buscador_Form_Buscar extends Zend_Form {
 
         $idiomaOrigen = $this->createElement('select','idiomaOrigen');
         $idiomaOrigen->setRequired(false);
-        
+
         $tablaIdiomas = new Buscador_Model_DbTable_Languages();
-        
-        if(Zend_Auth::getInstance()->hasIdentity()){
+
+        if (Zend_Auth::getInstance()->hasIdentity()) {
             $auth = Zend_Auth::getInstance();
             $data = $auth->getStorage()->read();
             $idioma = $data['lang'];
-        } else if(isset($_COOKIE['lang'])){
-            $idioma = $_COOKIE['lang']; 
+        } elseif (isset($_COOKIE['lang'])) {
+            $idioma = $_COOKIE['lang'];
         } else {
             $idioma = 'gl_GL';
         }
-        
-        
+
         $idiomaOrigen->addMultiOption(NULL,'['.Zend_Registry::get('Zend_Translate')->translate('m021').']');
         //Lee los idiomas de la BBDD
         foreach ($tablaIdiomas->getListaIdiomas($idioma) as $i) {
@@ -45,11 +43,11 @@ class Buscador_Form_Buscar extends Zend_Form {
         $boton->setDecorators(array('ViewHelper'));
         $boton->setAttrib('onClick', 'buttonElegirIdioma();');
         $boton->class="btn cambiarIdioma";
-        
+
         $idiomaDestino = $this->createElement('select','idiomaDestino');
         $idiomaDestino->setRequired(false);
         $idiomaDestino->addMultiOption(NULL,'['.Zend_Registry::get('Zend_Translate')->translate('m022').']');
-        
+
         //Lee los idiomas de la BBDD
         foreach ($tablaIdiomas->getListaIdiomas($idioma) as $i) {
             $idiomaDestino->addMultiOption($i['unit_language'], $i['language_name']);
@@ -57,7 +55,7 @@ class Buscador_Form_Buscar extends Zend_Form {
 
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m018')));
         $submit->class="submit button";
-        
+
         $hidden = $this->createElement('hidden','oculto');
 
         //Añadir elementos creados al formulario
@@ -72,7 +70,7 @@ class Buscador_Form_Buscar extends Zend_Form {
         $submit->setDecorators(array(
             'ViewHelper',
         ));
-        
+
         $hidden->setDecorators(array(
             array(array('espacio2' => 'HtmlTag'), array('tag' => 'br')),
         ));
@@ -91,7 +89,5 @@ class Buscador_Form_Buscar extends Zend_Form {
         ));
 
     }
-        
-}
 
-?>
+}

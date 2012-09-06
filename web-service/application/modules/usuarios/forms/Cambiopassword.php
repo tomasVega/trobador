@@ -1,16 +1,15 @@
 <?php
 
-class Usuarios_Form_Cambiopassword extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Usuarios_Form_Cambiopassword extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
         $this->setAction('/usuarios/usuarios/cambiarpassword');
         $this->setMethod('post');
         $this->setName('frmModificarPassword');
-
 
         //Elementos del formulario
         $passActual = $this->createElement('password', 'passwordActual');
@@ -25,7 +24,6 @@ class Usuarios_Form_Cambiopassword extends Zend_Form {
         $pass->setAttrib('size', 20);
         $pass->setAttrib('maxlength', 200);
 
-
         $pass1 = $this->createElement('password', 'password1');
         $pass1->setLabel(Zend_Registry::get('Zend_Translate')->translate('m062').': ');
         $pass1->setRequired(true);
@@ -34,7 +32,6 @@ class Usuarios_Form_Cambiopassword extends Zend_Form {
         $pass1->setAttrib('maxlength', 200);
 
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m063')));
-
 
         //Añadir elementos creados al formulario
         $this->addElements(array($passActual, $pass, $pass1, $submit));
@@ -61,5 +58,3 @@ class Usuarios_Form_Cambiopassword extends Zend_Form {
 
     }
 }
-
-?>

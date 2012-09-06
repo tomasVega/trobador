@@ -1,9 +1,9 @@
 <?php
 
-class Administracion_Form_Asignarproxectosusuario extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Administracion_Form_Asignarproxectosusuario extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -30,7 +30,6 @@ class Administracion_Form_Asignarproxectosusuario extends Zend_Form {
         $idUsuario->setValue($options['idUsuario']);
         $idUsuario->setDisableLoadDefaultDecorators(true);
 
-
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m092')));
 
         //Añadir elementos creados al formulario
@@ -55,5 +54,3 @@ class Administracion_Form_Asignarproxectosusuario extends Zend_Form {
     }
 
 }
-
-?>

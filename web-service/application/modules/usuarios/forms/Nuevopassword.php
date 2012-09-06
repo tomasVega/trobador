@@ -1,9 +1,9 @@
 <?php
 
-class Usuarios_Form_Nuevopassword extends Zend_Form {
-
-    public function __construct($options=null){
-
+class Usuarios_Form_Nuevopassword extends Zend_Form
+{
+    public function __construct($options=null)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -50,4 +50,3 @@ class Usuarios_Form_Nuevopassword extends Zend_Form {
 
     }
 }
-?>

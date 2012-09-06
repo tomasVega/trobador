@@ -1,9 +1,9 @@
 <?php
 
-class Usuarios_Form_Modificardatos extends Zend_Form {
-
-    public function __construct($options){
-
+class Usuarios_Form_Modificardatos extends Zend_Form
+{
+    public function __construct($options)
+    {
         parent::__construct($options);
 
         //Config del formulario
@@ -24,20 +24,19 @@ class Usuarios_Form_Modificardatos extends Zend_Form {
             new Zend_Filter_StringToLower(),
         ));
         $email->setValue($options['email']);
-        
+
         $nombre=$this->createElement('text', 'name');
         $nombre->setLabel(Zend_Registry::get('Zend_Translate')->translate('m049').': ');
         $nombre->setRequired(true);
         $nombre->setAttrib('size', 20);
         $nombre->setAttrib('maxlength', 100);
         $nombre->setValue($options['name']);
-        
+
         $pass = $this->createElement('password', 'password');
         $pass->setLabel(Zend_Registry::get('Zend_Translate')->translate('m061').': ');
         //$pass->setRequired(true);
         $pass->setAttrib('size', 20);
         $pass->setAttrib('maxlength', 200);
-
 
         $pass1 = $this->createElement('password', 'password1');
         $pass1->setLabel(Zend_Registry::get('Zend_Translate')->translate('m062').': ');
@@ -46,12 +45,10 @@ class Usuarios_Form_Modificardatos extends Zend_Form {
         $pass1->setAttrib('size', 20);
         $pass1->setAttrib('maxlength', 200);
 
-
         $submit=$this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m063')));
 
         //Añadir elementos creados al formulario
         $this->addElements(array($email, $nombre ,$submit));
-
 
         //Eliminar decoradores (Formatear form)
         $this->setElementDecorators(array(
@@ -72,7 +69,6 @@ class Usuarios_Form_Modificardatos extends Zend_Form {
             array('HtmlTag', array('tag' => 'table')),
             'Form',
         ));
-        
+
     }
 }
-?>

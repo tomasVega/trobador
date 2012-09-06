@@ -5,8 +5,8 @@ class Administracion_Model_DbTable_Privileges extends Zend_Db_Table_Abstract
 
     protected $_name = 'privileges';
 
-    public function getPrivilegios() {
-
+    public function getPrivilegios()
+    {
         $select = $this->select();
         $select->from($this->_name);
 
@@ -16,9 +16,8 @@ class Administracion_Model_DbTable_Privileges extends Zend_Db_Table_Abstract
 
     }
 
-
-    public function getPrivilegioPorId($privilegioId) {
-
+    public function getPrivilegioPorId($privilegioId)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("privilege_id = ?", $privilegioId);
 
@@ -29,33 +28,33 @@ class Administracion_Model_DbTable_Privileges extends Zend_Db_Table_Abstract
 
     }
 
-    public function guardarPrivilegio($nombrePrivilegio){
-
+    public function guardarPrivilegio($nombrePrivilegio)
+    {
         $data = array('privilege_name' => $nombrePrivilegio);
 
         $this->_db->insert($this->_name, $data);
 
     }
 
-    public function existePrivilegio($nombrePrivilegio){
-
+    public function existePrivilegio($nombrePrivilegio)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("privilege_name = ?", $nombrePrivilegio);
 
         $rows = $this->fetchAll($select);
         $count = $rows->count();
 
-        if($count > 0){
+        if ($count > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
 
     // Devuelve el número de privilegios
-    public function getNumPrivilegios(){
-
+    public function getNumPrivilegios()
+    {
         $select = $this->select();
         $select->from($this->_name, array("num"=>"COUNT(*)"));
 
@@ -65,12 +64,10 @@ class Administracion_Model_DbTable_Privileges extends Zend_Db_Table_Abstract
     }
 
     // Elimina un privilegio
-    public function eliminarPrivilegio($idPrivilegio){
-
+    public function eliminarPrivilegio($idPrivilegio)
+    {
         $this->_db->delete($this->_name, 'privilege_id = '.$idPrivilegio);
 
     }
-
-
 
 }

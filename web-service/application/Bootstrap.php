@@ -1,7 +1,7 @@
 <?php
 
-class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
-
+class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
+{
     // Inicializa la ruta para que el coja el index de /buscador/buscador/index
     public function _initRoutes()
     {
@@ -21,8 +21,8 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
     }
 
     // Mensajes de error genéricos en español
-    protected function _initLanguages(){
-
+    protected function _initLanguages()
+    {
         $translator = new Zend_Translate(
             'array',
             '../resources/languages',
@@ -35,10 +35,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
     }
 
     // Multilenguaje
-    protected function _initTranslation(){
-        
-        if(!Zend_Auth::getInstance()->hasIdentity()){
-            if(isset($_COOKIE['lang'])){
+    protected function _initTranslation()
+    {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            if (isset($_COOKIE['lang'])) {
                 setcookie('lang',$_COOKIE['lang'], 0,"/");
                 $localeCookie = $_COOKIE['lang'];
             } else {
@@ -47,30 +47,28 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap{
                 $translate = new Zend_Translate('array', '../resources/translations/gl_GL.php', $localeCookie);
                 Zend_Registry::set('Zend_Translate', $translate);
             }
-            
+
         } else {
             //Elimnar cookie idioma
             setcookie('lang', null);
-            
+
             $auth = Zend_Auth::getInstance();
             $data = $auth->getStorage()->read();
             $localeCookie = $data['lang'];
-            
+
         }
-        
-        if($localeCookie == 'gl_GL'){
+
+        if ($localeCookie == 'gl_GL') {
             $translate = new Zend_Translate('array', '../resources/translations/gl_GL.php', $localeCookie);
             Zend_Registry::set('Zend_Translate', $translate);
-        } else if($localeCookie == 'es_ES'){
+        } elseif ($localeCookie == 'es_ES') {
             $translate = new Zend_Translate('array', '../resources/translations/es_ES.php', $localeCookie);
             Zend_Registry::set('Zend_Translate', $translate);
-        } else if($localeCookie == 'en_EN'){
+        } elseif ($localeCookie == 'en_EN') {
             $translate = new Zend_Translate('array', '../resources/translations/en_EN.php', $localeCookie);
             Zend_Registry::set('Zend_Translate', $translate);
         }
-        
+
     }
 
 }
-
-?>

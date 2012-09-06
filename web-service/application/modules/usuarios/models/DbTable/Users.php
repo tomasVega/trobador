@@ -10,18 +10,20 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
     {
 
         $caracter= "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-        srand((double)microtime()*1000000);
-        for($i=0; $i<$numero; $i++) {
+        srand((double) microtime()*1000000);
+        for ($i=0; $i<$numero; $i++) {
             $rand.= $caracter[rand()%strlen($caracter)];
         }
+
         return $rand;
-        
+
     }
 
     public function generarPasswordAleatorio()
     {
         $long=12;
         $cadena="[^A-Za-z0-9]";
+
         return substr(eregi_replace($cadena, "", md5(rand())) .
             eregi_replace($cadena, "", md5(rand())) .
             eregi_replace($cadena, "", md5(rand())),
@@ -29,39 +31,39 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
     }
 
     // Comprueba que el usuario y contraseña introducidos son válidos
-    public function comprobarLogin($email, $pass){
-
+    public function comprobarLogin($email, $pass)
+    {
         $select = $this->select()->where('email = ?', $email)
             ->where('password = ?', hash("md5",$pass));
 
         $row = $this->fetchRow($select);
-        
-        if($row) {
+
+        if ($row) {
             return $row;
         }
-        
+
         return false;
     }
 
     // Comprueba que el usuario y contraseña introducidos son válidos y el usuario está activo
-    public function comprobarLoginUsuarioActivado($email, $pass){
-
+    public function comprobarLoginUsuarioActivado($email, $pass)
+    {
         $select = $this->select()->where('email = ?', $email)
                                 ->where('password = ?', hash("md5",$pass))
                                 ->where('activated = 1');
 
         $row = $this->fetchRow($select);
 
-        if($row) {
+        if ($row) {
             return $row;
         }
 
         return false;
     }
-    
-    // Introduce un nuevo usuario en la BBDD
-    public function almacenarUsuario($email, $nombre, $pass) {
 
+    // Introduce un nuevo usuario en la BBDD
+    public function almacenarUsuario($email, $nombre, $pass)
+    {
         $passEncriptado = hash("md5", $pass);
         $validationToken = $this->generarValidationToken();
 
@@ -72,10 +74,10 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
         $this->_db->insert($this->_name, $data);
     }
-    
-    // Introduce un nuevo usuario en la BBDD
-    public function almacenarUsuarioAdmin($email, $nombre, $role, $activo, $validationToken, $passEncriptado) {
 
+    // Introduce un nuevo usuario en la BBDD
+    public function almacenarUsuarioAdmin($email, $nombre, $role, $activo, $validationToken, $passEncriptado)
+    {
         //$passEncriptado = hash("md5", $pass);
         //$validationToken = $this->generarValidationToken();
 
@@ -90,37 +92,37 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
     }
 
     // Devuelve la lista completa de usuarios de la BBDD
-    public function getListaUsuarios() {
-
+    public function getListaUsuarios()
+    {
         $select = $this->select();
         $select->from($this->_name);
-        
+
         $rows = $this->fetchAll($select);
-        
+
         return $rows;
-        
+
     }
 
     // Comprueba si una dirección de email ya está en uso
-    public function existeEmail($email) {
-
+    public function existeEmail($email)
+    {
         $select=$this->select();
         $select->from($this->_name)->where("email = ?", $email);
 
         $rows = $this->fetchAll($select);
         $count = $rows->count();
 
-        if($count > 0){
+        if ($count > 0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
 
     // Devuelve el validation_token que concuerda con un determinado email
-    public function getValidationTokenPorEmail($email) {
-
+    public function getValidationTokenPorEmail($email)
+    {
         $select=$this->select();
         $select->from($this->_name,'validation_token')->where("email = ?", $email);
 
@@ -132,8 +134,8 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
     }
 
-    public function getUserPorId($userId) {
-
+    public function getUserPorId($userId)
+    {
         $select=$this->select();
         $select->from($this->_name)->where("user_id = ?", $userId);
 
@@ -143,26 +145,27 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
         return $row;
 
     }
-    
-    // Devuelve el nombre que concuerda con un determinado email
-    public function getNamePorId($id) {
 
+    // Devuelve el nombre que concuerda con un determinado email
+    public function getNamePorId($id)
+    {
         $select=$this->select();
         $select->from($this->_name,'name')->where("user_id = ?", $id);
 
         $rows = $this->fetchAll($select);
-        if(count($rows) > 0){
+        if (count($rows) > 0) {
             $row=$rows->getRow(0);
             $nombre = $row['name'];
+
             return $nombre;
-        }else{
+        } else {
             return null;
         }
     }
 
     // Devuelve el user_id que concuerda con un determinado email
-    public function getUserIdPorEmail($email) {
-
+    public function getUserIdPorEmail($email)
+    {
         $select=$this->select();
         $select->from($this->_name,'user_id')->where("email = ?", $email);
 
@@ -174,8 +177,8 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
     }
 
-    public function getRolPorEmail($email) {
-
+    public function getRolPorEmail($email)
+    {
         $select=$this->select();
         $select->from($this->_name,'role_id')->where("email = ?", $email);
 
@@ -188,8 +191,8 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
     }
 
     // Devuelve el nombre que concuerda con un determinado email
-    public function getNamePorEmail($email) {
-
+    public function getNamePorEmail($email)
+    {
         $select=$this->select();
         $select->from($this->_name,'name')->where("email = ?", $email);
 
@@ -201,8 +204,8 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
     }
 
-    public function getPasswordPorId($userId) {
-
+    public function getPasswordPorId($userId)
+    {
         $select=$this->select();
         $select->from($this->_name, 'password')->where("user_id = ?", $userId);
 
@@ -215,8 +218,8 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
     }
 
     // Comprueba que el email y el validation_token concuerdan con los datos de BBDD
-    public function comprobarActivacion($email,$validationToken) {
-
+    public function comprobarActivacion($email,$validationToken)
+    {
         $select=$this->select();
         $select->from($this->_name,'*');
         $select->where("email = ?", $email);
@@ -225,25 +228,25 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
         $rows = $this->fetchAll($select);
         $count=$rows->count();
 
-        if($count>0){
+        if ($count>0) {
             return true;
-        }else{
+        } else {
             return false;
         }
 
     }
 
     // Pone a 1 el campo activated indicando que la cuenta se ha dado de alta
-    public function realizarActivacion($email) {
-
+    public function realizarActivacion($email)
+    {
         $data = array('activated' => '1');
         $this->_db->update($this->_name, $data, $this->_db->quoteInto('email = ?', $email));
-        
+
     }
 
     // Inserta el pass generado tras la recuperación, en BBDD
-    public function setPasswordPorEmail($email){
-
+    public function setPasswordPorEmail($email)
+    {
         $password = $this->generarPasswordAleatorio();
         $passwordEncriptado = hash("md5", $password);
 
@@ -254,9 +257,8 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
     }
 
-
-    public function actualizarDatosUsuario($email, $nombre) {
-
+    public function actualizarDatosUsuario($email, $nombre)
+    {
         // Se seleccion el id de usuario de la sesión
         $auth = Zend_Auth::getInstance();
         $userData = $auth->getStorage()->read();
@@ -268,11 +270,11 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
         // Se actualizan los datos de la sesión del usuario
         $this->actualizaSesionUsuario($userData['user_id'], $email, $nombre, $userData['role_name'], $userData['lang']);
-        
+
     }
 
-    public function actualizarPasswordUsuario($password) {
-
+    public function actualizarPasswordUsuario($password)
+    {
         // Se seleccion el id de usuario de la sesión
         $auth = Zend_Auth::getInstance();
         $userData = $auth->getStorage()->read();
@@ -283,18 +285,17 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
 
     }
 
-    private function actualizaSesionUsuario($userId, $email, $nombre, $rol, $lang) {
-
+    private function actualizaSesionUsuario($userId, $email, $nombre, $rol, $lang)
+    {
         $auth = Zend_Auth::getInstance();
         $auth->getStorage()->write(array('email' => $email, 'user_id' => $userId, 'name' => $nombre, 'role_name' => $rol, 'lang' => $lang));
 
     }
-   
 
     // Devuelve la lista de todos los usuarios para editar de la aplicación
-    public function getListaUsuariosEditar() {
-        
-        $sql = 'SELECT u.user_id, u.email, u.name, u.activated, u.role_id, r.role_name 
+    public function getListaUsuariosEditar()
+    {
+        $sql = 'SELECT u.user_id, u.email, u.name, u.activated, u.role_id, r.role_name
             FROM users u, roles r
             WHERE u.role_id = r.role_id';
 
@@ -305,45 +306,43 @@ class Usuarios_Model_DbTable_Users extends Zend_Db_Table_Abstract
     }
 
     // Devuelve el número de usuarios
-    public function getNumUsuarios() {
-
+    public function getNumUsuarios()
+    {
         $select = $this->select();
         $select->from($this->_name, array("num"=>"COUNT(*)"));
 
         $rowsNum = $this->fetchRow($select);
 
         return $rowsNum['num'];
-        
+
     }
 
     // Actualiza los datos de un usuario en la parte de administración
-    public function actualizarUsuario($email, $nombre, $roles, $activo, $userId) {
-
+    public function actualizarUsuario($email, $nombre, $roles, $activo, $userId)
+    {
         // Se insertan los nuevos valores en base de datos
         $data = array('email' => $email, 'name' => $nombre, 'role_id' => $roles, 'activated' => $activo);
-        
+
         $this->_db->update($this->_name, $data, $this->_db->quoteInto('user_id = ?', $userId));
 
     }
 
-
     // Elimina un usuario
-    public function eliminarUsuario($idUsuario){
-
+    public function eliminarUsuario($idUsuario)
+    {
         $this->_db->delete($this->_name, 'user_id = '.$idUsuario);
 
     }
 
-
     // Elimina usuarios segun su rol
-    public function eliminarUsuariosRol($idRol){
-
+    public function eliminarUsuariosRol($idRol)
+    {
         $this->_db->delete($this->_name, 'role_id = '.$idRol);
-        
+
     }
 
-    public function getListaUsuariosPorRol($idRol) {
-
+    public function getListaUsuariosPorRol($idRol)
+    {
         $select = $this->select();
         $select->from($this->_name)->where("role_id = ?", $idRol);
 
