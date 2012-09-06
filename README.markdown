@@ -12,12 +12,14 @@ It also features a Gtranslator plugin that shows translations for a given string
 Install it!
 -----------
 
-WebService
-----------
-----------
+### WebService ###
 1. Copy it in your public web folder
 2. Install the sql schema in your SQL server.
 3. Tune the application/configs/application.ini with your database connection parameters
+
+### Gtranslator plugin ###
+1. Drop the gtranslator-plugin folder into `.local/share/gtranslator/plugins` within you user folder.
+2. Start Gtranslator, go to the Preferences panel and activate the plugin.
 
 Dependencies
 ------------
