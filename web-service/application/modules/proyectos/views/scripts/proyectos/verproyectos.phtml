@@ -1,45 +1,41 @@
-<div class="hero-unit">
-    <h2><?=Zend_Registry::get('Zend_Translate')->translate('m003')?></h2>
-    <center>
-<?      if(!$this->mensaje) { ?>
-        <table id="tablaProyectos" class="tabla">
-            <thead>
-                <tr>
-                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m049')?></th>
-                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m057')?></th>
-                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m058')?></th>
-                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m055')?></th>
-                    <?
-                        $acl = new Usuarios_Model_Acl();
-                        $auth = Zend_Auth::getInstance();
-                        $data = $auth->getStorage()->read();
+<h2><?=Zend_Registry::get('Zend_Translate')->translate('m003')?></h2>
+<hr>
+<? if(!$this->mensaje) { ?>
+<table id="tablaProyectos" class="table table-bordered">
+    <thead>
+        <tr>
+            <th class="left"><?=Zend_Registry::get('Zend_Translate')->translate('m049')?></th>
+            <th style="width:140px;"><?=Zend_Registry::get('Zend_Translate')->translate('m057')?></th>
+            <th style="width:140px;"><?=Zend_Registry::get('Zend_Translate')->translate('m055')?></th>
+            <?
+                $acl = new Usuarios_Model_Acl();
+                $auth = Zend_Auth::getInstance();
+                $data = $auth->getStorage()->read();
 
-                        if ($acl->esAdmin($data['role_name'])) {?>
-                            <th><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></th>
-                    <?  } ?>
+                if ($acl->esAdmin($data['role_name'])) {?>
+                    <th style="width:140px;"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></th>
+            <?  } ?>
+        </tr>
+    </thead>
+    <tbody>
+        <?  $tablaUsuarios = new Usuarios_Model_DbTable_Users();
+            $i=0;
+            foreach ($this->proyectos as $proyecto){
+        ?>
+                <tr>
+                    <td class="left"><a href="/proyectos/proyectos/verproyecto?idProyecto=<?=$proyecto['project_id']?>"><?=$proyecto['project_name']?></a></td>
+                    <td><?=$tablaUsuarios->getNamePorId($proyecto['user_id'])?></td>
+                    <td><?=$proyecto['creation_date']?></td>
+                    <?if ($acl->esAdmin($data['role_name'])) { ?>
+                        <td><a class="btn btn-danger" id="btnModal<?=$i?>" onclick='addEliminarProyecto(<?=$proyecto['project_id']?>,"<?=Zend_Registry::get('Zend_Translate')->translate('m113')?>","<?=Zend_Registry::get('Zend_Translate')->translate('m115')?>")' href="#"<i class="icon-trash icon-white"></i> <?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
+                    <?}?>
                 </tr>
-            </thead>
-            <tbody>
-                <?  $tablaUsuarios = new Usuarios_Model_DbTable_Users();
-                    $i=0;
-                    foreach ($this->proyectos as $proyecto){
-                ?>
-                        <tr>
-                            <td><a href="/proyectos/proyectos/verproyecto?idProyecto=<?=$proyecto['project_id']?>"><?=$proyecto['project_name']?></a></td>
-                            <td><?=$tablaUsuarios->getNamePorId($proyecto['user_id'])?></td>
-                            <td><?=$proyecto['percent_completed']."%"?></td>
-                            <td><?=$proyecto['creation_date']?></td>
-                            <?if ($acl->esAdmin($data['role_name'])) { ?>
-                                <td><a id="btnModal<?=$i?>" onclick='addEliminarProyecto(<?=$proyecto['project_id']?>,"<?=Zend_Registry::get('Zend_Translate')->translate('m113')?>","<?=Zend_Registry::get('Zend_Translate')->translate('m115')?>")' href="#"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
-                            <?}?>
-                        </tr>
-                            
-               <?   $i = $i + 1;} ?>
-            </tbody>
-        </table>
-<?      } else {
-            echo $this->mensaje;
-        }
+
+       <?   $i = $i + 1;} ?>
+    </tbody>
+</table>
+<?
+} else {
+    echo $this->mensaje;
+}
 ?>
-    </center>
-</div>
