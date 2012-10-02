@@ -32,11 +32,11 @@
                     <tbody>
                         <tr>
                             <th><?=Zend_Registry::get('Zend_Translate')->translate('m029')?></th>
-                            <td><?=$proyectos[$resul['version_id']]?></td>
+                            <td><?=$versiones[$resul['version_id']]['project_name']?></td>
                         </tr>
                         <tr>
                             <th><?=Zend_Registry::get('Zend_Translate')->translate('m030')?></th>
-                            <td><?=$versiones[$resul['version_id']]?></td>
+                            <td><?=$versiones[$resul['version_id']]['version_name']?></td>
                         </tr>
                         <tr>
                             <th>Original string</th>

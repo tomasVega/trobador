@@ -32,14 +32,7 @@ class Buscador_BuscadorController extends Zend_Controller_Action
 
             if ($resultados != null) {
 
-                $i = 0;
-                $proyectos[] = null;
-                foreach ($resultados as $res) {
-                    $versiones[$i] = $this->_tablaVersiones->getNombreVersionPorId($res['version_id']);
-                    $versionActual = $versiones[$i];
-                    $proyectos[$i] = $this->_tablaProyectos->getNombreProyectoPorId($versionActual['project_id']);
-                    $i++;
-                }
+                list($proyectos, $versiones) = $this->getProjectsAndVersions();
 
                 $this->view->num = $resultados->count();
                 //$this->view->resultado = $resultados;
@@ -78,19 +71,7 @@ class Buscador_BuscadorController extends Zend_Controller_Action
 
                     if ($resultados != null) {
 
-                        $proyectos = $versiones = array();
-                        foreach ($resultados as $res) {
-                            $actual = $res['version_id'];
-                            if (!array_key_exists($actual, $versiones)) {
-                                $versiones[$actual] =  $this->_tablaVersiones->getNombreVersionPorId($actual);
-                            }
-
-                            if (!array_key_exists($actual, $proyectos)) {
-                                $proyectos[$actual] =
-                                    $this->_tablaProyectos->getNombreProyectoPorId($actual);
-                            }
-                        }
-
+                        list($proyectos, $versiones) = $this->getProjectsAndVersions();
 
                         $this->view->num = $resultados->count();
                         $this->view->proyectos = $proyectos;
@@ -158,6 +139,29 @@ class Buscador_BuscadorController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_redirect('/buscador/buscador/index');
+    }
+
+    private function getProjectsAndVersions() {
+        $proyectos = $versiones = array();
+
+        $projectsRAW = $this->_tablaProyectos->fetchAll();
+        foreach ($projectsRAW as $project) {
+            $proyectos[$project['project_id']] = array(
+                'project_name' => $project['project_name'],
+                'user_id'      => $project['user_id']
+            );
+        }
+
+        $versionesRAW = $this->_tablaVersiones->fetchAll();
+        foreach ($versionesRAW as $version) {
+            $versiones[$version['version_id']] = array(
+                'version_name' => $version['version_name'],
+                'project_id'   => $version['project_id'],
+                'project_name' => $proyectos[$version['project_id']]['project_name']
+            );
+        }
+
+        return array($proyectos, $versiones);
     }
 
 }
