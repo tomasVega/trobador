@@ -1748,7 +1748,7 @@ footer {
 .alert-message.danger,
 .btn.error,
 .alert-message.error {
-    
+
   width: 700px;
   background-color: #c43c35;
   background-repeat: repeat-x;
@@ -2442,7 +2442,7 @@ h2 {
     font-weight: bold;
     text-align: center;
     line-height: 27px;
-    
+
 }
 
 .loading{
@@ -2466,4 +2466,12 @@ h2 {
     font-weight: bold;
     text-align: center;
     line-height: 27px;
+}
+
+#language-selector {
+  float:left;
+}
+#language-selector label {
+  width:auto;
+  display:inline-block;
 }
