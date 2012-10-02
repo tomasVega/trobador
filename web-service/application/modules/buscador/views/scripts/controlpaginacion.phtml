@@ -4,7 +4,7 @@
     <li>
         <!-- Previous page link -->
         <?php if (isset($this->previous)): ?>
-        <a href="<?= $this->url(array('page' => $this->previous, 'cadena'=> $this->cadena, 'idiomaOrigen' => $this->idiomaOrigen, 'idiomaDestino' => $this->idiomaDestino)); ?>">&lt; <?=Zend_Registry::get('Zend_Translate')->translate('m024')?></a> |
+        <a href="<?= $this->url(array('page' => $this->previous, 'cadena'=> $this->cadena, 'idiomaOrigen' => $this->idiomaOrigen, 'idiomaDestino' => $this->idiomaDestino)); ?>">&lt; <?=Zend_Registry::get('Zend_Translate')->translate('m024')?></a>
         <?php else: ?>
         <span class="disabled">&lt; <?=Zend_Registry::get('Zend_Translate')->translate('m024')?></span>
         <?php endif; ?>

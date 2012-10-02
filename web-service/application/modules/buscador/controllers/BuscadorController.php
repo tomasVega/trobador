@@ -21,11 +21,23 @@ class Buscador_BuscadorController extends Zend_Controller_Action
         $formularioBusqueda = new Buscador_Form_Buscar();
         $mensaje = "";
 
-        if ($this->_getParam('page')) {
+        $cadena = $this->_getParam('cadena');
+        $idiomaOrigen = $this->_getParam('idiomaOrigen');
+        $idiomaDestino = $this->_getParam('idiomaDestino');
 
-            $cadena = $this->_getParam('cadena');
-            $idiomaOrigen = $this->_getParam('idiomaOrigen');
-            $idiomaDestino = $this->_getParam('idiomaDestino');
+        if (!is_null($_POST)
+            || (!is_null($cadena) && !is_null($idiomaDestino) && !is_null($idiomaDestino))
+        ) {
+
+            if ($this->getRequest()->isPost() && $formularioBusqueda->isValid($_POST)) {
+                // Datos recibidos del formulario
+                $cadena = $formularioBusqueda->getValue('cadena');
+                $idiomaOrigen = $formularioBusqueda->getValue('idiomaOrigen');
+                $idiomaDestino = $formularioBusqueda->getValue('idiomaDestino');
+            }
+
+
+            $this->view->searchTopic = $cadena;
 
             // Realizar busqueda
             $resultados = $this->_tablaMemorias->getResultadosBusquedaIdiomas($cadena, $idiomaOrigen, $idiomaDestino);
@@ -35,72 +47,30 @@ class Buscador_BuscadorController extends Zend_Controller_Action
                 list($proyectos, $versiones) = $this->getProjectsAndVersions();
 
                 $this->view->num = $resultados->count();
-                //$this->view->resultado = $resultados;
                 $this->view->proyectos = $proyectos;
                 $this->view->versiones = $versiones;
 
-                //paginador
-                $pageNumber = 5;
-                $itemNumber = 5;
+                // Get pagination configuration
+                $pageNumber = $itemNumber = 30;
                 $paginator = Zend_Paginator::factory($resultados);
                 $paginator->setItemCountPerPage($pageNumber);
                 $paginator->getItemsByPage($itemNumber);
                 $paginator->setCurrentPageNumber($this->_getParam('page'));
                 Zend_Paginator::setDefaultScrollingStyle('Sliding');
 
-                //resultados bd
                 $this->view->resultado = $paginator;
                 $this->view->paginator = $paginator;
                 $this->view->cadena = $cadena;
                 $this->view->idiomaOrigen = $idiomaOrigen;
                 $this->view->idiomaDestino = $idiomaDestino;
-            }
-        } else {
-            // Si se reciben datos por post
-            if ($this->getRequest()->isPost()) {
-                // Si los datos recibidos son válidos
-                if ($formularioBusqueda->isValid($_POST)) {
-                    // Datos recibidos del formulario
-                    $cadena = $formularioBusqueda->getValue('cadena');
-                    $idiomaOrigen = $formularioBusqueda->getValue('idiomaOrigen');
-                    $idiomaDestino = $formularioBusqueda->getValue('idiomaDestino');
 
-                    // Realizar busqueda
-                    $resultados = $this->_tablaMemorias->getResultadosBusquedaIdiomas($cadena, $idiomaOrigen, $idiomaDestino);
-                    $this->view->searchTopic = $cadena;
-
-                    if ($resultados != null) {
-
-                        list($proyectos, $versiones) = $this->getProjectsAndVersions();
-
-                        $this->view->num = $resultados->count();
-                        $this->view->proyectos = $proyectos;
-                        $this->view->versiones = $versiones;
-
-                        // Get pagination configuration
-                        $pageNumber = $itemNumber = 30;
-                        $paginator = Zend_Paginator::factory($resultados);
-                        $paginator->setItemCountPerPage($pageNumber);
-                        $paginator->getItemsByPage($itemNumber);
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        Zend_Paginator::setDefaultScrollingStyle('Sliding');
-
-                        $this->view->resultado = $paginator;
-                        $this->view->paginator = $paginator;
-                        $this->view->cadena = $cadena;
-                        $this->view->idiomaOrigen = $idiomaOrigen;
-                        $this->view->idiomaDestino = $idiomaDestino;
-
-                    } else {
-                        $mensaje = Zend_Registry::get('Zend_Translate')->translate('m023');
-                        $this->_helper->FlashMessenger($mensaje);
-                    }
-                }
+            } else {
+                $mensaje = Zend_Registry::get('Zend_Translate')->translate('m023');
+                $this->_helper->FlashMessenger($mensaje);
             }
 
+            $this->view->form = $formularioBusqueda;
         }
-
-        $this->view->form = $formularioBusqueda;
     }
 
     public function cambiaridiomaAction()
