@@ -13,33 +13,47 @@
 </div>
 
 <?    if($this->num > 0) { ?>
-        <div class="hero-unit">
-            <h2><?=Zend_Registry::get('Zend_Translate')->translate('m027')?></h2>
-
-            <div class="alinearTextoIzq">
+            <h2><?=Zend_Registry::get('Zend_Translate')->translate('m027')?> "<?php echo $this->searchTopic; ?>"</h2>
+            <div class="right">
                 <b><?=Zend_Registry::get('Zend_Translate')->translate('m028')?>:</b> <?=$this->num?>
             </div>
-            <?
-            $i = 0;
+            <hr>
+
+
+            <div id="search-results">
+            <?php
             $proyectos = $this->proyectos;
             $versiones = $this->versiones;
+
             foreach ($this->resultado as $resul) {
                 ?>
-                <div class="fondo alinearTextoIzq">
-                    <b><?=Zend_Registry::get('Zend_Translate')->translate('m029')?>: </b><?=$proyectos[$i]?><br>
-                    <b><?=Zend_Registry::get('Zend_Translate')->translate('m030')?>: </b><?=$versiones[$i]?><br>
-                    <b><?=Zend_Registry::get('Zend_Translate')->translate('m031')?>: </b><br>
-                    <div class="justificarTexto">
-                        <?=$resul['translated_unit']?>
-                    </div>
-                </div><br><br>
+
+                <table class="table-bordered">
+                    <tbody>
+                        <tr>
+                            <th><?=Zend_Registry::get('Zend_Translate')->translate('m029')?></th>
+                            <td><?=$proyectos[$resul['version_id']]?></td>
+                        </tr>
+                        <tr>
+                            <th><?=Zend_Registry::get('Zend_Translate')->translate('m030')?></th>
+                            <td><?=$versiones[$resul['version_id']]?></td>
+                        </tr>
+                        <tr>
+                            <th>Original string</th>
+                            <td><?php echo str_replace($this->searchTopic, '<span class="highlight">'.$this->searchTopic.'</span>', $resul['original_unit'])?></td>
+                        </tr>
+                        <tr>
+                            <th><?=Zend_Registry::get('Zend_Translate')->translate('m031')?></th>
+                            <td><?=$resul['translated_unit']?></td>
+                        </tr>
+                    </tbody>
+                </table>
             <?
-                $i++;
             }
             $params = array('cadena' => $this->cadena, 'idiomaOrigen' => $this->idiomaOrigen, 'idiomaDestino' => $this->idiomaDestino);
             ?>
+            </div>
             <?php echo $this->paginationControl($this->paginator, 'Sliding', 'controlpaginacion.phtml', $params); ?>
-        </div>
  <?   } else if ($this->mensaje){ ?>
             <div class="hero-unit">
             <h2><?=Zend_Registry::get('Zend_Translate')->translate('m027')?></h2>

@@ -74,25 +74,30 @@ class Buscador_BuscadorController extends Zend_Controller_Action
 
                     // Realizar busqueda
                     $resultados = $this->_tablaMemorias->getResultadosBusquedaIdiomas($cadena, $idiomaOrigen, $idiomaDestino);
+                    $this->view->searchTopic = $cadena;
 
                     if ($resultados != null) {
 
-                        $i = 0;
-                        $proyectos[] = null;
+                        $proyectos = $versiones = array();
                         foreach ($resultados as $res) {
-                            $versiones[$i] = $this->_tablaVersiones->getNombreVersionPorId($res['version_id']);
-                            $versionActual = $versiones[$i];
-                            $proyectos[$i] = $this->_tablaProyectos->getNombreProyectoPorId($versionActual['project_id']);
-                            $i++;
+                            $actual = $res['version_id'];
+                            if (!array_key_exists($actual, $versiones)) {
+                                $versiones[$actual] =  $this->_tablaVersiones->getNombreVersionPorId($actual);
+                            }
+
+                            if (!array_key_exists($actual, $proyectos)) {
+                                $proyectos[$actual] =
+                                    $this->_tablaProyectos->getNombreProyectoPorId($actual);
+                            }
                         }
+
 
                         $this->view->num = $resultados->count();
                         $this->view->proyectos = $proyectos;
                         $this->view->versiones = $versiones;
 
-                        //paginador
-                        $pageNumber = 5;
-                        $itemNumber = 5;
+                        // Get pagination configuration
+                        $pageNumber = $itemNumber = 30;
                         $paginator = Zend_Paginator::factory($resultados);
                         $paginator->setItemCountPerPage($pageNumber);
                         $paginator->getItemsByPage($itemNumber);
