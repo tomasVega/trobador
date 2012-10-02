@@ -36,7 +36,7 @@ class Buscador_Form_Buscar extends Zend_Form
         foreach ($tablaIdiomas->getListaIdiomas($idioma) as $i) {
             $idiomaOrigen->addMultiOption($i['unit_language'], $i['language_name']);
         }
-        $idiomaOrigen->setValue('gl');
+        $idiomaOrigen->setValue('en');
 
         $boton = new Zend_Form_Element_Button('btnCambiarIdioma');
         $boton->setLabel("");
@@ -52,7 +52,7 @@ class Buscador_Form_Buscar extends Zend_Form
         foreach ($tablaIdiomas->getListaIdiomas($idioma) as $i) {
             $idiomaDestino->addMultiOption($i['unit_language'], $i['language_name']);
         }
-        $idiomaDestino->setValue('en');
+        $idiomaDestino->setValue('gl');
 
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m018')));
         $submit->class="submit button";
