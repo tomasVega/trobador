@@ -27,7 +27,7 @@ return array(
     "m023"  =>  "Non se atopou ningún resultado",
     "m024"  =>  "Anterior",
     "m025"  =>  "Seguinte",
-    "m026"  =>  "Buscador de termos",
+    "m026"  =>  "Corpus de proxectos do Proxecto Trasno",
     "m027"  =>  "Resultados",
     "m028"  =>  "Número de resultados",
     "m029"  =>  "Proxecto",
