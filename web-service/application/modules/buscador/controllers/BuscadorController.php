@@ -25,7 +25,7 @@ class Buscador_BuscadorController extends Zend_Controller_Action
         $idiomaOrigen = $this->_getParam('idiomaOrigen');
         $idiomaDestino = $this->_getParam('idiomaDestino');
 
-        if (!is_null($_POST)
+        if ($this->getRequest()->isPost()
             || (!is_null($cadena) && !is_null($idiomaDestino) && !is_null($idiomaDestino))
         ) {
 
@@ -68,9 +68,9 @@ class Buscador_BuscadorController extends Zend_Controller_Action
                 $mensaje = Zend_Registry::get('Zend_Translate')->translate('m023');
                 $this->_helper->FlashMessenger($mensaje);
             }
-
-            $this->view->form = $formularioBusqueda;
         }
+
+        $this->view->form = $formularioBusqueda;
     }
 
     public function cambiaridiomaAction()

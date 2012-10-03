@@ -1,26 +1,17 @@
 <?php
-
 class Application_View_Helper_Menu extends Zend_View_Helper_Abstract
 {
     public function menu()
     {
-        $menu = "<ul class='navigation'>
-            <li>
-                <a id='menu-Pag1' href='/proyectos/proyectos/verproyectostotales'>".Zend_Registry::get('Zend_Translate')->translate('m000')."</a>
-            </li>";
+        $menu = "<ul class='nav'>";
+        $menu .= "<li><a id='menu-Pag1' href='/proyectos/proyectos/verproyectostotales'>".Zend_Registry::get('Zend_Translate')->translate('m000')."</a></li>";
 
-            if (Zend_Auth::getInstance()->hasIdentity()) {
-                $menu .="<li>
-                    <a id='menu-Pag2' href='/proyectos/proyectos/verproyectos'>".Zend_Registry::get('Zend_Translate')->translate('m003')."</a>
-                </li>
-                <li>
-                    <a id='menu-Pag3' href='/proyectos/memorias/subirmemoria'>".Zend_Registry::get('Zend_Translate')->translate('m004')."</a>
-                </li>";
-            }
+        if (Zend_Auth::getInstance()->hasIdentity()) {
+            $menu .= "<li><a id='menu-Pag2' href='/proyectos/proyectos/verproyectos'>".Zend_Registry::get('Zend_Translate')->translate('m003')."</a></li>";
+        }
+
         $menu .= "</ul>";
 
         return $menu;
-
     }
-
 }

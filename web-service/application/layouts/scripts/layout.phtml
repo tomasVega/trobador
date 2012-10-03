@@ -3,8 +3,8 @@
     <head>
         <?
             //ViewHelper que carga los metas con la información necesaria
-            echo $this->headersdescriptivos();
             echo $this->headTitle();
+            echo $this->headersdescriptivos();
             $this->headLink()->appendStylesheet("/css/estilos.css");
             $this->headScript()->appendFile("/js/scripts.js");
             $this->headScript()->appendFile("/js/funciones.js");
@@ -12,28 +12,28 @@
             $this->headScript()->appendFile("/js/bootstrap-modal.js");
             $this->headScript()->appendFile("/js/jquery/jquery.blockUI.1.33.js");
             $this->headScript()->appendFile("/js/jquery/blockUIModal.js");
+
             echo $this->headScript();
             echo $this->headLink();
             echo $this->jQuery();
         ?>
     </head>
     <body>
-        <div class="topbar" data-dropdown="dropdown">
-            <div class="fill">
+        <div class="navbar navbar-inverse navbar-fixed-top" data-dropdown="dropdown">
+            <div class="navbar-inner">
                 <div class="container">
                     <a class="brand" href="/buscador/buscador/"><img height="20px" src="http://s17.postimage.org/6lltgrdnf/trobador_P.png"/></a>
-                    <?//=$this->navigation()->menu()?>
-                    <?=$this->menu()?>
+                    <div class="pull-left"><?=$this->menu()?></div>
 
                     <?=$this->menuadmin()?>
-
-                    <div class="pull-right">
-                    <?  if(!Zend_Auth::getInstance()->hasIdentity()){
-                            echo $this->login(new Usuarios_Form_Login());
-                        } else {
-                            echo $this->loggedin();
-                        } ?>
-                    </div>
+                    <?php
+                    if (!Zend_Auth::getInstance()->hasIdentity()) {
+                        echo $this->login(new Usuarios_Form_Login());
+                    } else { ?>
+                        <div class="pull-right">
+                            <?php echo $this->loggedin(); ?>
+                        </div>
+                    <?php } ?>
                 </div>
             </div>
         </div><!-- fin topbar -->
@@ -41,22 +41,20 @@
         <div class="container">
 
             <!-- Se imprimen los mensajes de error/aviso al usuario -->
-            <div style="clear:both">
-                <center>
-                 <? $messenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
-                    $messages = array_merge($messenger->getCurrentMessages(),$messenger->getMessages());
-                    foreach ($messages as $message) { ?>
-                        <div id="alerta" class="alert-message info fade in">
-                            <a id="closealerta" class="close" data-dismiss="alert-message" href="#">&times;</a>
-                            <?=$this->escape($this->translate($message))?>
-                        </div>
-                    <?
-                    }
-                    $messenger->clearMessages();
-                    ?>
-                </center>
-            </div>
-            <div>
+            <center>
+             <? $messenger = Zend_Controller_Action_HelperBroker::getStaticHelper('FlashMessenger');
+                $messages = array_merge($messenger->getCurrentMessages(),$messenger->getMessages());
+                foreach ($messages as $message) { ?>
+                    <div id="alerta" class="alert-message info fade in">
+                        <a id="closealerta" class="close" data-dismiss="alert-message" href="#">&times;</a>
+                        <?=$this->escape($this->translate($message))?>
+                    </div>
+                <?
+                }
+                $messenger->clearMessages();
+                ?>
+            </center>
+            <div id="content">
                 <?=$this->layout()->content?>
             </div>
 
