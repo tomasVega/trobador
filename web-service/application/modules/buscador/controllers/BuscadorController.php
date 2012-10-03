@@ -58,13 +58,15 @@ class Buscador_BuscadorController extends Zend_Controller_Action
 
                 // Get pagination configuration
                 $pageNumber = $itemNumber = 30;
+                $page = (int) $this->_getParam('page', 1);
                 $paginator = Zend_Paginator::factory($resultados);
                 $paginator->setItemCountPerPage($pageNumber);
                 $paginator->getItemsByPage($itemNumber);
-                $paginator->setCurrentPageNumber($this->_getParam('page', 1));
+                $paginator->setCurrentPageNumber($page);
                 Zend_Paginator::setDefaultScrollingStyle('Sliding');
 
                 $this->view->resultado = $paginator;
+                $this->view->page = $page;
                 $this->view->paginator = $paginator;
                 $this->view->cadena = $cadena;
                 $this->view->idiomaOrigen = $idiomaOrigen;
