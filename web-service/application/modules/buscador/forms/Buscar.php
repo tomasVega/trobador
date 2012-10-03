@@ -41,7 +41,6 @@ class Buscador_Form_Buscar extends Zend_Form
         $boton = new Zend_Form_Element_Button('btnCambiarIdioma');
         $boton->setLabel("");
         $boton->setDecorators(array('ViewHelper'));
-        $boton->setAttrib('onClick', 'buttonElegirIdioma();');
         $boton->class="btn cambiarIdioma";
 
         $idiomaDestino = $this->createElement('select','idiomaDestino');

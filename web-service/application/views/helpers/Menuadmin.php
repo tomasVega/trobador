@@ -12,7 +12,7 @@ class Application_View_Helper_Menuadmin extends Zend_View_Helper_Abstract
         if (Zend_Auth::getInstance()->hasIdentity() && $acl->esAdmin($data['role_name'])) {
             $menuAdmin .= "<ul class='nav'>";
             $menuAdmin .= "<li class='dropdown'>";
-            $menuAdmin .= "<a class='dropdown-toggle' data-toggle=\"dropdown\" href='#'>".Zend_Registry::get('Zend_Translate')->translate('m005')."<b class=\"caret\"></b></a>";
+            $menuAdmin .= "<a class='dropdown-toggle' data-toggle=\"dropdown\" href='#'>".Zend_Registry::get('Zend_Translate')->translate('m005')."</b></a>";
             $menuAdmin .= "<ul class='dropdown-menu'>
                             <li><a href='/proyectos/proyectos/crearproyecto'>".Zend_Registry::get('Zend_Translate')->translate('m006')."</a></li>
                             <li><a href='/proyectos/versiones/crearversion'>".Zend_Registry::get('Zend_Translate')->translate('m007')."</a></li>";

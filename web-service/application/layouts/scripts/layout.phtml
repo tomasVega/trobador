@@ -6,11 +6,10 @@
             echo $this->headTitle();
             echo $this->headersdescriptivos();
             $this->headLink()->appendStylesheet("/css/estilos.css");
+            $this->headScript()->appendFile("/js/jquery/jquery.js");
             $this->headScript()->appendFile("/js/scripts.js");
             $this->headScript()->appendFile("/js/funciones.js");
-            $this->headScript()->appendFile("/js/dropdown.js");
-            $this->headScript()->appendFile("/js/bootstrap-modal.js");
-            $this->headScript()->appendFile("/js/jquery/jquery.blockUI.1.33.js");
+            $this->headScript()->appendFile("/js/bootstrap.min.js");
             $this->headScript()->appendFile("/js/jquery/blockUIModal.js");
 
             echo $this->headScript();

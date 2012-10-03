@@ -36,21 +36,6 @@
 
     }
 
-    function buttonElegirIdioma() {
-
-        frm = document.forms["frmElegirIdioma"];
-        idOrigen = document.getElementById("idiomaOrigen").value;
-        idDestino = document.getElementById("idiomaDestino").value;
-
-        if(idOrigen != '' && idDestino != ''){
-
-            document.getElementById("idiomaOrigen").value = idDestino;
-            document.getElementById("idiomaDestino").value = idOrigen;
-
-        }
-
-    }
-
 
     function addEliminarProyecto(idProyecto, mensaje, mensajeBoton){
 
