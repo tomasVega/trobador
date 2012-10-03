@@ -10,7 +10,7 @@ class Usuarios_Form_Login extends Zend_Form
         $this->setName('frmLogin');
         $this->setAction('/usuarios/usuarios/login');
         $this->setMethod('post');
-        $this->setOptions(array('class'=>'navbar-search pull-right'));
+        $this->setOptions(array('class'=>'navbar-search'));
 
         //Elementos del formulario
         $email=$this->createElement('text', 'email');

@@ -26,14 +26,14 @@
                     <div class="pull-left"><?=$this->menu()?></div>
 
                     <?=$this->menuadmin()?>
+                        <div class="pull-right">
                     <?php
                     if (!Zend_Auth::getInstance()->hasIdentity()) {
                         echo $this->login(new Usuarios_Form_Login());
                     } else { ?>
-                        <div class="pull-right">
                             <?php echo $this->loggedin(); ?>
-                        </div>
                     <?php } ?>
+                        </div>
                 </div>
             </div>
         </div><!-- fin topbar -->
