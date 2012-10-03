@@ -10,12 +10,9 @@
     </div>
 
     <? if ($this->num > 0) { ?>
-        <div class="right">
-            <h2><?=Zend_Registry::get('Zend_Translate')->translate('m027')?> "<?php echo $this->searchTopic; ?>"</h2>
-            <b><?=Zend_Registry::get('Zend_Translate')->translate('m028')?>:</b> <?=$this->num?>
+        <div class="left">
+            <h3><?=Zend_Registry::get('Zend_Translate')->translate('m027')?> "<?php echo $this->searchTopic; ?>" : <?=$this->num?> resultados</h3>
         </div>
-        <hr>
-
 
         <div id="search-results">
         <?php

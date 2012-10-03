@@ -12,7 +12,7 @@ return array(
     "m008"  =>  "Gestión de usuarios",
     "m009"  =>  "Gestión de recursos",
     "m010"  =>  "Olvidé la contraseña",
-    "m011"  =>  "Modificar datos",
+    "m011"  =>  "Modificar perfíl",
     "m012"  =>  "Cerrar sesión",
     "m013"  =>  "Ayuda",
     "m014"  =>  "Contacto",

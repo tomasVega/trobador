@@ -43,7 +43,6 @@ class Buscador_BuscadorController extends Zend_Controller_Action
 
             }
 
-
             $this->view->searchTopic = $cadena;
 
             // Realizar busqueda

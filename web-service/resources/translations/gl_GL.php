@@ -12,7 +12,7 @@ return array(
     "m008"  =>  "Xestión de usuarios",
     "m009"  =>  "Xestión de recursos",
     "m010"  =>  "Esquecín o contrasinal",
-    "m011"  =>  "Modificar datos",
+    "m011"  =>  "Modificar perfíl",
     "m012"  =>  "Saír da sesión",
     "m013"  =>  "Axuda",
     "m014"  =>  "Contacto",

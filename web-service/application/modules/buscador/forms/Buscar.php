@@ -54,7 +54,7 @@ class Buscador_Form_Buscar extends Zend_Form
         $idiomaDestino->setValue('gl');
 
         $submit = $this->createElement('submit','submit',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m018')));
-        $submit->class="submit button";
+        $submit->class="submit btn btn-primary";
 
         $hidden = $this->createElement('hidden','oculto');
 
