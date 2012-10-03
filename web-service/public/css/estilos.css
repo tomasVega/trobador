@@ -2270,6 +2270,9 @@ h2 {
 }
 .navbar .brand {
     margin:-5px;
+    background: url(../imagenes/trobadorP.png) center left no-repeat;
+    width:90px;
+    height:25px;
 }
 .navbar .navbar-inner {
   background-color: #33485c;
@@ -2292,7 +2295,7 @@ h2 {
     text-align:center;
 }
 .main-page .page-header h1 {
-    background: url("http://s18.postimage.org/bav9fb92h/trobador.png") top left no-repeat;
+    background: url("../imagenes/trobador.png") top left no-repeat;
     width:426px;
     height:153px;
     margin:0 auto;
