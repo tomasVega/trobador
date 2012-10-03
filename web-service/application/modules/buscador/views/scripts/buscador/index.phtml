@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <th>Original string</th>
-                        <td><?php echo preg_replace('@$this->searchTopic@i', '<span class="highlight">'.$this->searchTopic.'</span>', $resul['original_unit'])?></td>
+                        <td><?php echo preg_replace('/('.$this->searchTopic.')/i', '<span class="highlight">$1</span>', $resul['original_unit'])?></td>
                     </tr>
                     <tr>
                         <th><?=Zend_Registry::get('Zend_Translate')->translate('m031')?></th>
