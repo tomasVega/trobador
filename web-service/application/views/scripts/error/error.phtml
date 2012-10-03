@@ -1,23 +1,21 @@
-<div class="hero-unit">
-    <h2><?=Zend_Registry::get('Zend_Translate')->translate('err000');?></h2>
-        <center>
-            <h3><?php echo $this->message ?></h3>
-        </center>
-    <?php if (isset($this->exception)): ?>
-
-    <h3>Exception information:</h3>
-    <p>
-        <b>Message:</b> <?php echo $this->exception->getMessage() ?>
-    </p>
-
-    <h3>Stack trace:</h3>
-    <pre><?php echo $this->exception->getTraceAsString() ?>
-    </pre>
-
-    <h3>Request Parameters:</h3>
-    <pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
-    </pre>
-
-    <?php endif ?>
-   
+<div class="page-header">
+    <h1><?=Zend_Registry::get('Zend_Translate')->translate('err000');?></h1>
 </div>
+<h3><?php echo $this->message ?></h3>
+<?php if (isset($this->exception)): ?>
+
+<h3>Exception information:</h3>
+<p>
+    <b>Message:</b> <?php echo $this->exception->getMessage() ?>
+</p>
+
+<h3>Stack trace:</h3>
+<pre><?php echo $this->exception->getTraceAsString() ?>
+</pre>
+
+<h3>Request Parameters:</h3>
+<pre><?php echo $this->escape(var_export($this->request->getParams(), true)) ?>
+</pre>
+
+<?php endif ?>
+
