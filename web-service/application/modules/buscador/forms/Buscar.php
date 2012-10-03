@@ -8,7 +8,7 @@ class Buscador_Form_Buscar extends Zend_Form
         //Config del formulario
         $this->setName('frmBuscador');
         $this->setAction('/buscador/buscador/index');
-        $this->setMethod('post');
+        $this->setMethod('get');
 
         //Elementos del formulario
         $cadena = $this->createElement('text','cadena');

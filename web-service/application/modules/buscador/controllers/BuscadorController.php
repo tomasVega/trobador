@@ -25,15 +25,22 @@ class Buscador_BuscadorController extends Zend_Controller_Action
         $idiomaOrigen = $this->_getParam('idiomaOrigen');
         $idiomaDestino = $this->_getParam('idiomaDestino');
 
-        if ($this->getRequest()->isPost()
-            || (!is_null($cadena) && !is_null($idiomaDestino) && !is_null($idiomaDestino))
+
+        if ((!is_null($cadena) && !is_null($idiomaDestino) && !is_null($idiomaDestino))
         ) {
 
-            if ($this->getRequest()->isPost() && $formularioBusqueda->isValid($_POST)) {
+            $values = array(
+                'cadena'        => $this->_getParam('cadena'),
+                'idiomaOrigen'  => $this->_getParam('idiomaOrigen'),
+                'idiomaDestino' => $this->_getParam('idiomaDestino'),
+            );
+
+            if ($formularioBusqueda->isValid($values)) {
                 // Datos recibidos del formulario
                 $cadena = $formularioBusqueda->getValue('cadena');
                 $idiomaOrigen = $formularioBusqueda->getValue('idiomaOrigen');
                 $idiomaDestino = $formularioBusqueda->getValue('idiomaDestino');
+
             }
 
 
@@ -55,7 +62,7 @@ class Buscador_BuscadorController extends Zend_Controller_Action
                 $paginator = Zend_Paginator::factory($resultados);
                 $paginator->setItemCountPerPage($pageNumber);
                 $paginator->getItemsByPage($itemNumber);
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setCurrentPageNumber($this->_getParam('page', 1));
                 Zend_Paginator::setDefaultScrollingStyle('Sliding');
 
                 $this->view->resultado = $paginator;
