@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h1><?=Zend_Registry::get('Zend_Translate')->translate('m003')?></h1>
+    <h2><?=Zend_Registry::get('Zend_Translate')->translate('m003')?></h2>
 </div>
 <?php if(!$this->mensaje) { ?>
 <table id="tablaProyectos" class="table table-bordered">
@@ -14,7 +14,7 @@
                 $data = $auth->getStorage()->read();
 
                 if ($acl->esAdmin($data['role_name'])) {?>
-                    <th style="width:140px;"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></th>
+                    <th style="width:100px;"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></th>
             <?  } ?>
         </tr>
     </thead>

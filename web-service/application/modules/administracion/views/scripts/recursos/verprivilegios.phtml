@@ -1,44 +1,43 @@
-<div class="hero-unit">
-    
-    <div style="float:right;">
-        <a id="linkVolver" href="/administracion/recursos/index">
-            <img height="35px" src="http://s7.postimage.org/got4jyvnb/volver.png" 
-            alt="<?=Zend_Registry::get('Zend_Translate')->translate('m118')?>"
-            title="<?=Zend_Registry::get('Zend_Translate')->translate('m118')?>"/>
-        </a>
-    </div>
-    
+<div class="page-header">
     <h2 style="clear:both"><?=Zend_Registry::get('Zend_Translate')->translate('m102')?></h2>
-    <center>
-        <?=$this->form->render()?>
-        <h2><?=Zend_Registry::get('Zend_Translate')->translate('m078')?></h2>
-        <table class="tabla">
-            <thead>
-                <tr>
-                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m049')?></th>
-                    <?
-                        $acl = new Usuarios_Model_Acl();
-                        $auth = Zend_Auth::getInstance();
-                        $data = $auth->getStorage()->read();
-
-                        if ($acl->esAdmin($data['role_name'])) {?>
-                            <th><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></th>
-                    <?}?>
-                </tr>
-            </thead>
-            <tbody>
-                <?
-                    foreach ($this->privilegios as $privilegio){
-                ?>
-                    <tr>
-                        <td><?=$privilegio['privilege_name']?></td>
-                        <?if ($acl->esAdmin($data['role_name'])) {?>
-                            <td><a href="/administracion/recursos/eliminarprivilegio?idPrivilegio=<?=$privilegio['privilege_id']?>"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
-                        <?}?>
-                    </tr>
-
-               <? } ?>
-            </tbody>
-        </table>
-    </center>
 </div>
+
+<div style="float:right;">
+    <a id="linkVolver" href="/administracion/recursos/index">
+        <img height="35px" src="http://s7.postimage.org/got4jyvnb/volver.png"
+        alt="<?=Zend_Registry::get('Zend_Translate')->translate('m118')?>"
+        title="<?=Zend_Registry::get('Zend_Translate')->translate('m118')?>"/>
+    </a>
+</div>
+
+<?=$this->form->render()?>
+
+<h2><?=Zend_Registry::get('Zend_Translate')->translate('m078')?></h2>
+<table class="tabla">
+    <thead>
+        <tr>
+            <th><?=Zend_Registry::get('Zend_Translate')->translate('m049')?></th>
+            <?
+                $acl = new Usuarios_Model_Acl();
+                $auth = Zend_Auth::getInstance();
+                $data = $auth->getStorage()->read();
+
+                if ($acl->esAdmin($data['role_name'])) {?>
+                    <th><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></th>
+            <?}?>
+        </tr>
+    </thead>
+    <tbody>
+        <?
+            foreach ($this->privilegios as $privilegio){
+        ?>
+            <tr>
+                <td><?=$privilegio['privilege_name']?></td>
+                <?if ($acl->esAdmin($data['role_name'])) {?>
+                    <td><a href="/administracion/recursos/eliminarprivilegio?idPrivilegio=<?=$privilegio['privilege_id']?>"><?=Zend_Registry::get('Zend_Translate')->translate('m056')?></a></td>
+                <?}?>
+            </tr>
+
+       <? } ?>
+    </tbody>
+</table>
