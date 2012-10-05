@@ -21,97 +21,61 @@ class Buscador_BuscadorController extends Zend_Controller_Action
         $formularioBusqueda = new Buscador_Form_Buscar();
         $mensaje = "";
 
-        if ($this->_getParam('page')) {
+        $cadena = $this->_getParam('cadena');
+        $idiomaOrigen = $this->_getParam('idiomaOrigen');
+        $idiomaDestino = $this->_getParam('idiomaDestino');
 
-            $cadena = $this->_getParam('cadena');
-            $idiomaOrigen = $this->_getParam('idiomaOrigen');
-            $idiomaDestino = $this->_getParam('idiomaDestino');
+
+        if ((!is_null($cadena) && !is_null($idiomaDestino) && !is_null($idiomaDestino))
+        ) {
+
+            $values = array(
+                'cadena'        => $this->_getParam('cadena'),
+                'idiomaOrigen'  => $this->_getParam('idiomaOrigen'),
+                'idiomaDestino' => $this->_getParam('idiomaDestino'),
+            );
+
+            if ($formularioBusqueda->isValid($values)) {
+                // Datos recibidos del formulario
+                $cadena = $formularioBusqueda->getValue('cadena');
+                $idiomaOrigen = $formularioBusqueda->getValue('idiomaOrigen');
+                $idiomaDestino = $formularioBusqueda->getValue('idiomaDestino');
+
+            }
+
+            $this->view->searchTopic = $cadena;
 
             // Realizar busqueda
             $resultados = $this->_tablaMemorias->getResultadosBusquedaIdiomas($cadena, $idiomaOrigen, $idiomaDestino);
 
             if ($resultados != null) {
 
-                $i = 0;
-                $proyectos[] = null;
-                foreach ($resultados as $res) {
-                    $versiones[$i] = $this->_tablaVersiones->getNombreVersionPorId($res['version_id']);
-                    $versionActual = $versiones[$i];
-                    $proyectos[$i] = $this->_tablaProyectos->getNombreProyectoPorId($versionActual['project_id']);
-                    $i++;
-                }
+                list($proyectos, $versiones) = $this->getProjectsAndVersions();
 
                 $this->view->num = $resultados->count();
-                //$this->view->resultado = $resultados;
                 $this->view->proyectos = $proyectos;
                 $this->view->versiones = $versiones;
 
-                //paginador
-                $pageNumber = 5;
-                $itemNumber = 5;
+                // Get pagination configuration
+                $pageNumber = $itemNumber = 30;
+                $page = (int) $this->_getParam('page', 1);
                 $paginator = Zend_Paginator::factory($resultados);
                 $paginator->setItemCountPerPage($pageNumber);
                 $paginator->getItemsByPage($itemNumber);
-                $paginator->setCurrentPageNumber($this->_getParam('page'));
+                $paginator->setCurrentPageNumber($page);
                 Zend_Paginator::setDefaultScrollingStyle('Sliding');
 
-                //resultados bd
                 $this->view->resultado = $paginator;
+                $this->view->page = $page;
                 $this->view->paginator = $paginator;
                 $this->view->cadena = $cadena;
                 $this->view->idiomaOrigen = $idiomaOrigen;
                 $this->view->idiomaDestino = $idiomaDestino;
+
+            } else {
+                $mensaje = Zend_Registry::get('Zend_Translate')->translate('m023');
+                $this->_helper->FlashMessenger($mensaje);
             }
-        } else {
-            // Si se reciben datos por post
-            if ($this->getRequest()->isPost()) {
-                // Si los datos recibidos son válidos
-                if ($formularioBusqueda->isValid($_POST)) {
-                    // Datos recibidos del formulario
-                    $cadena = $formularioBusqueda->getValue('cadena');
-                    $idiomaOrigen = $formularioBusqueda->getValue('idiomaOrigen');
-                    $idiomaDestino = $formularioBusqueda->getValue('idiomaDestino');
-
-                    // Realizar busqueda
-                    $resultados = $this->_tablaMemorias->getResultadosBusquedaIdiomas($cadena, $idiomaOrigen, $idiomaDestino);
-
-                    if ($resultados != null) {
-
-                        $i = 0;
-                        $proyectos[] = null;
-                        foreach ($resultados as $res) {
-                            $versiones[$i] = $this->_tablaVersiones->getNombreVersionPorId($res['version_id']);
-                            $versionActual = $versiones[$i];
-                            $proyectos[$i] = $this->_tablaProyectos->getNombreProyectoPorId($versionActual['project_id']);
-                            $i++;
-                        }
-
-                        $this->view->num = $resultados->count();
-                        $this->view->proyectos = $proyectos;
-                        $this->view->versiones = $versiones;
-
-                        //paginador
-                        $pageNumber = 5;
-                        $itemNumber = 5;
-                        $paginator = Zend_Paginator::factory($resultados);
-                        $paginator->setItemCountPerPage($pageNumber);
-                        $paginator->getItemsByPage($itemNumber);
-                        $paginator->setCurrentPageNumber($this->_getParam('page'));
-                        Zend_Paginator::setDefaultScrollingStyle('Sliding');
-
-                        $this->view->resultado = $paginator;
-                        $this->view->paginator = $paginator;
-                        $this->view->cadena = $cadena;
-                        $this->view->idiomaOrigen = $idiomaOrigen;
-                        $this->view->idiomaDestino = $idiomaDestino;
-
-                    } else {
-                        $mensaje = Zend_Registry::get('Zend_Translate')->translate('m023');
-                        $this->_helper->FlashMessenger($mensaje);
-                    }
-                }
-            }
-
         }
 
         $this->view->form = $formularioBusqueda;
@@ -153,6 +117,29 @@ class Buscador_BuscadorController extends Zend_Controller_Action
         $this->_helper->layout->disableLayout();
         $this->_helper->viewRenderer->setNoRender(true);
         $this->_redirect('/buscador/buscador/index');
+    }
+
+    private function getProjectsAndVersions() {
+        $proyectos = $versiones = array();
+
+        $projectsRAW = $this->_tablaProyectos->fetchAll();
+        foreach ($projectsRAW as $project) {
+            $proyectos[$project['project_id']] = array(
+                'project_name' => $project['project_name'],
+                'user_id'      => $project['user_id']
+            );
+        }
+
+        $versionesRAW = $this->_tablaVersiones->fetchAll();
+        foreach ($versionesRAW as $version) {
+            $versiones[$version['version_id']] = array(
+                'version_name' => $version['version_name'],
+                'project_id'   => $version['project_id'],
+                'project_name' => $proyectos[$version['project_id']]['project_name']
+            );
+        }
+
+        return array($proyectos, $versiones);
     }
 
 }

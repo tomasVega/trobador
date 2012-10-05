@@ -1,5 +1,23 @@
 $(document).ready(function() {
 
+    $('#btnCambiarIdioma').on('click', function(e, ui) {
+        var form = $(this).closest('form');
+
+        var originalLanguageInput = form.find('#idiomaOrigen');
+        var targetLanguageInput   = form.find('#idiomaDestino');
+
+        var originalLanguage      = originalLanguageInput.find(' option:selected').val();
+        var targetLanguage        = targetLanguageInput.find(' option:selected').val();
+
+        if (originalLanguage != '' && targetLanguage != '') {
+            originalLanguageInput.val(targetLanguage);
+            targetLanguageInput.val(originalLanguage);
+        }
+    });
+
+
+    // Review below code
+
     // Mostrar form de crear nuevo usuario
     $("#frmNuevoUsuario").hide();
     $("#linkCancelar").hide();
@@ -13,86 +31,86 @@ $(document).ready(function() {
         $("#frmNuevoUsuario").hide();
         $("#linkCancelar").hide();
     });
-    
+
     // Cerrar mensajes de error
     $("#closealerta").click(function () {
         $("#alerta").remove();
-        
+
     });
-    
-    
+
+
 
 
     if(document.getElementById("tablaProyectos")){
         var tablaProyectos = document.getElementById("tablaProyectos");
         var linksProyectos = tablaProyectos.getElementsByTagName("A");
-        
+
         for (var i = 0; i < linksProyectos.length; i++) {
             $("#btnModal"+i).click(function () {
-                $.blockUIModal(); 
-                $('#myModal').removeClass('hide');
-            });
-        }
-    }
-    
-    if(document.getElementById("tablaVersiones")){
-        var tablaVersiones = document.getElementById("tablaVersiones");
-        var linksVersiones = tablaVersiones.getElementsByTagName("A");
-        
-        for (var j = 0; j < linksVersiones.length; j++) {
-            $("#btnModal"+j).click(function () {
-                $.blockUIModal(); 
-                $('#myModal').removeClass('hide');
-            });
-        }
-    }
-    
-    
-    if(document.getElementById("tablaUsuarios")){
-        var tablaUsuarios = document.getElementById("tablaUsuarios");
-        var linksUsuarios = tablaUsuarios.getElementsByTagName("A");
-        
-        for (var j = 0; j < linksUsuarios.length; j++) {
-            $("#btnModal"+j).click(function () {
-                $.blockUIModal(); 
+                $.blockUIModal();
                 $('#myModal').removeClass('hide');
             });
         }
     }
 
-    
-    
-    
-    
-    
+    if(document.getElementById("tablaVersiones")){
+        var tablaVersiones = document.getElementById("tablaVersiones");
+        var linksVersiones = tablaVersiones.getElementsByTagName("A");
+
+        for (var j = 0; j < linksVersiones.length; j++) {
+            $("#btnModal"+j).click(function () {
+                $.blockUIModal();
+                $('#myModal').removeClass('hide');
+            });
+        }
+    }
+
+
+    if(document.getElementById("tablaUsuarios")){
+        var tablaUsuarios = document.getElementById("tablaUsuarios");
+        var linksUsuarios = tablaUsuarios.getElementsByTagName("A");
+
+        for (var j = 0; j < linksUsuarios.length; j++) {
+            $("#btnModal"+j).click(function () {
+                $.blockUIModal();
+                $('#myModal').removeClass('hide');
+            });
+        }
+    }
+
+
+
+
+
+
     $("#btnCerrarModal").click(function () {
         $.unblockUIModal();
         $('#myModal').addClass('hide');
         $('#btnGuardarModal').remove();
         $('#cabeceraPregunta').remove();
-        
+
     });
-    
+
     $("#btnCerrarModal1").click(function () {
         $.unblockUIModal();
         $('#myModal').addClass('hide');
         $('#btnGuardarModal').remove();
         $('#cabeceraPregunta').remove();
-        
+
     });
-    
+
     $("#btnGuardarModal").click(function () {
         $.unblockUIModal();
         $('#myModal').addClass('hide');
         $('#btnGuardarModal').remove();
         $('#cabeceraPregunta').remove();
     });
-    
-    
-    
-    
+
+
+
+
     function init(){
-        
+
         currentLink=document.getElementsByTagName("A")
         num=0
 
@@ -103,9 +121,9 @@ $(document).ready(function() {
             }
         num++
         }
- 
+
     }
- 
+
     function togglelink(etiqueta){
 
         currentLink=document.getElementById(etiqueta)
@@ -128,29 +146,27 @@ $(document).ready(function() {
         }
 
     }
-    
-    
-    $('#submitMemoria').click(function() { 
-            $.blockUI(); 
-            currentLink=document.getElementById('menu-Pag1');
-            currentLink.enabledState=false;
-            //$('menu-Pag1').addClass('disabled');
-            init();
-            currentLink=document.getElementsByTagName("A")
-            num=0
- 
-            while(currentLink[num]){
-                togglelink(currentLink[num].id);
-                num++;
-            }
-            //alert('hola');
+
+
+    $('#submitMemoria').click(function() {
+        e.preventDefault();
+
+        jQuery.blockUI();
+        currentLink = document.getElementById('menu-Pag1');
+        currentLink.enabledState=false;
+        //$('menu-Pag1').addClass('disabled');
+        init();
+        currentLink=document.getElementsByTagName("A")
+        num=0
+
+        while (currentLink[num]){
+            togglelink(currentLink[num].id);
+            num++;
+        }
+
+        return false;
     });
-    
- 
 
-
-
-    
 });
 
 

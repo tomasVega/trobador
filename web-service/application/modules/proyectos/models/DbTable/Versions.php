@@ -5,6 +5,16 @@ class Proyectos_Model_DbTable_Versions extends Zend_Db_Table_Abstract
 
     protected $_name = 'versions';
 
+    public function getByVersionId($versionId)
+    {
+        $select = $this->select();
+        $select->from($this->_name)->where("version_id = ?", $versionId);
+
+        $rows = $this->fetchAll($select);
+
+        return $rows;
+    }
+
     // Guarda una versión de un proyecto
     public function almacenarVersion($nombre, $idUsuario, $idProyecto)
     {

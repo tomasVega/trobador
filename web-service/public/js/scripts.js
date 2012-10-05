@@ -28,35 +28,20 @@
                 }
             });
     }
-    
-    
+
+
     function submitFormElegirIdioma() {
-        
+
         document.forms["frmElegirIdioma"].submit();
-        
+
     }
-    
-    function buttonElegirIdioma() {
-        
-        frm = document.forms["frmElegirIdioma"];
-        idOrigen = document.getElementById("idiomaOrigen").value;
-        idDestino = document.getElementById("idiomaDestino").value;
-        
-        if(idOrigen != '' && idDestino != ''){
-            
-            document.getElementById("idiomaOrigen").value = idDestino;
-            document.getElementById("idiomaDestino").value = idOrigen;
-            
-        }
-        
-    }
-    
-    
+
+
     function addEliminarProyecto(idProyecto, mensaje, mensajeBoton){
-        
+
         modalHeader = document.getElementById("modal-header");
         modalFooter = document.getElementById("modal-footer");
-        
+
         //if(!document.getElementById("cabeceraPregunta") && !document.getElementById("btnGuardarModal")){
             h3 = document.createElement("h3");
             h3.setAttribute('id', 'cabeceraPregunta');
@@ -71,15 +56,15 @@
 
             modalFooter.appendChild(linkAceptar);
         //}
-        
+
     }
-    
-    
+
+
     function addEliminarVersion(idVersion, mensaje, mensajeBoton){
-        
+
         modalHeader = document.getElementById("modal-header");
         modalFooter = document.getElementById("modal-footer");
-        
+
         //if(!document.getElementById("cabeceraPregunta") && !document.getElementById("btnGuardarModal")){
             h3 = document.createElement("h3");
             h3.setAttribute('id', 'cabeceraPregunta');
@@ -94,15 +79,15 @@
 
             modalFooter.appendChild(linkAceptar);
         //}
-        
+
     }
-    
-    
+
+
     function addEliminarUsuario(idUsuario, mensaje, mensajeBoton){
-        
+
         modalHeader = document.getElementById("modal-header");
         modalFooter = document.getElementById("modal-footer");
-        
+
         //if(!document.getElementById("cabeceraPregunta") && !document.getElementById("btnGuardarModal")){
             h3 = document.createElement("h3");
             h3.setAttribute('id', 'cabeceraPregunta');
@@ -117,6 +102,6 @@
 
             modalFooter.appendChild(linkAceptar);
         //}
-        
+
     }
-    
+

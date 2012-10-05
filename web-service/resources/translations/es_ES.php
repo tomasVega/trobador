@@ -12,7 +12,7 @@ return array(
     "m008"  =>  "Gestión de usuarios",
     "m009"  =>  "Gestión de recursos",
     "m010"  =>  "Olvidé la contraseña",
-    "m011"  =>  "Modificar datos",
+    "m011"  =>  "Modificar perfíl",
     "m012"  =>  "Cerrar sesión",
     "m013"  =>  "Ayuda",
     "m014"  =>  "Contacto",
@@ -27,7 +27,7 @@ return array(
     "m023"  =>  "No se encontraron resultados",
     "m024"  =>  "Anterior",
     "m025"  =>  "Siguiente",
-    "m026"  =>  "Buscador de términos",
+    "m026"  =>  "Corpus de proxectos del Proyecto Trasno",
     "m027"  =>  "Resultados",
     "m028"  =>  "Número de resultados",
     "m029"  =>  "Proyecto",
@@ -120,7 +120,7 @@ return array(
     "m116"  =>  "Desea eliminar la versión",
     "m117"  =>  "Desea eliminar el usuario",
     "m118"  =>  "Volver",
-    
+
     "err000"    =>  "Error de la aplicación",
     "err001"    =>  "Revise su e-mail, debe activar su cuenta para acceder",
     "err002"    =>  "Revise su e-mail para consultar su nueva contraseña",
@@ -161,6 +161,6 @@ return array(
     "err037"    =>  "No tiene proyectos asignados",
     "err038"    =>  "Debe indicar el e-mail y la contraseña",
     "err039"    =>  "Página no encontrada",
-    
+
 );
 ?>

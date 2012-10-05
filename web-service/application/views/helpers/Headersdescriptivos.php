@@ -26,7 +26,7 @@ class Application_View_Helper_Headersdescriptivos extends Zend_View_Helper_Abstr
                 <meta name="robots" content="follow, index"/>
                 <!-- Icono pestaña navegador -->
                 <link rel="shortcut icon" href=""/>
-                <script language="Javascript" type="text/javascript" src="/js/jquery/jquery-1.6.1.js"></script>';
+                <script language="Javascript" type="text/javascript" src="/js/jquery/jquery.js"></script>';
 
     }
 

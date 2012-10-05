@@ -38,10 +38,10 @@ class Proyectos_Form_Nuevamemoria extends Zend_Form
         }
 
         $versiones = $this->createElement('select', 'version', array(
-            'required' => true,
-            'label' => 'Version: ',
+            'required'                 => true,
+            'label'                    => 'Version: ',
             'registerInArrayValidator' => false,//Necesario para ajax
-            'multiOptions' => array(NULL => '['.Zend_Registry::get('Zend_Translate')->translate('m048').']')
+            'multiOptions'             => array(NULL => '['.Zend_Registry::get('Zend_Translate')->translate('m048').']')
         ));
 
         $submit = $this->createElement('submit','submitMemoria',array('label'=>Zend_Registry::get('Zend_Translate')->translate('m039')));

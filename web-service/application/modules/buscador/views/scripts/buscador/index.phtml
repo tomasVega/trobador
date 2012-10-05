@@ -1,48 +1,54 @@
-<div class="header">
-    <center>
-        <h1><img src="http://s18.postimage.org/bav9fb92h/trobador.png"/></h1>
-    </center>
-</div>
-<div class="hero-unit">
-    <h2><?=Zend_Registry::get('Zend_Translate')->translate('m026')?></h2>
-    <center>
-    <?
-        echo $this->form;
-    ?>
-    </center>
-</div>
+<?php $params = array('cadena' => $this->cadena, 'idiomaOrigen' => $this->idiomaOrigen, 'idiomaDestino' => $this->idiomaDestino); ?>
+<div class="main-page">
+    <?php if($this->num < 1) { ?>
+    <div class="page-header">
+        <a href="/"><h1 class="ir">Trobador</h1></a>
+        <h2><?=Zend_Registry::get('Zend_Translate')->translate('m026')?></h2>
+    </div>
+    <?php } ?>
+    <div class="search-form">
+        <?php echo $this->form; ?>
+    </div>
 
-<?    if($this->num > 0) { ?>
-        <div class="hero-unit">
-            <h2><?=Zend_Registry::get('Zend_Translate')->translate('m027')?></h2>
-
-            <div class="alinearTextoIzq">
-                <b><?=Zend_Registry::get('Zend_Translate')->translate('m028')?>:</b> <?=$this->num?>
-            </div>
-            <?
-            $i = 0;
-            $proyectos = $this->proyectos;
-            $versiones = $this->versiones;
-            foreach ($this->resultado as $resul) {
-                ?>
-                <div class="fondo alinearTextoIzq">
-                    <b><?=Zend_Registry::get('Zend_Translate')->translate('m029')?>: </b><?=$proyectos[$i]?><br>
-                    <b><?=Zend_Registry::get('Zend_Translate')->translate('m030')?>: </b><?=$versiones[$i]?><br>
-                    <b><?=Zend_Registry::get('Zend_Translate')->translate('m031')?>: </b><br>
-                    <div class="justificarTexto">
-                        <?=$resul['translated_unit']?>
-                    </div>
-                </div><br><br>
-            <?
-                $i++;
-            }
-            $params = array('cadena' => $this->cadena, 'idiomaOrigen' => $this->idiomaOrigen, 'idiomaDestino' => $this->idiomaDestino);
-            ?>
-            <?php echo $this->paginationControl($this->paginator, 'Sliding', 'controlpaginacion.phtml', $params); ?>
+    <? if ($this->num > 0) { ?>
+        <div class="left">
+            <h3><?=Zend_Registry::get('Zend_Translate')->translate('m027')?> "<?php echo $this->searchTopic; ?>" : Showing form <?php echo abs($this->page-1) * 30 ?> to <?php echo $this->page * 30 ?> of <?=$this->paginator->getTotalItemCount()?> results</h3>
         </div>
- <?   } else if ($this->mensaje){ ?>
-            <div class="hero-unit">
+
+        <div id="search-results">
+
+        <?php
+        $proyectos = $this->proyectos;
+        $versiones = $this->versiones;
+
+        foreach ($this->resultado as $resul) {
+            ?>
+
+            <table class="table-bordered">
+                <tbody>
+                    <tr>
+                        <th><?=Zend_Registry::get('Zend_Translate')->translate('m029')?></th>
+                        <td><?=$versiones[$resul['version_id']]['project_name']?></td>
+                    </tr>
+                    <tr>
+                        <th><?=Zend_Registry::get('Zend_Translate')->translate('m030')?></th>
+                        <td><?=$versiones[$resul['version_id']]['version_name']?></td>
+                    </tr>
+                    <tr>
+                        <th>Original string</th>
+                        <td><?php echo preg_replace('/('.$this->searchTopic.')/i', '<span class="highlight">$1</span>', $resul['original_unit'])?></td>
+                    </tr>
+                    <tr>
+                        <th><?=Zend_Registry::get('Zend_Translate')->translate('m031')?></th>
+                        <td><?=$resul['translated_unit']?></td>
+                    </tr>
+                </tbody>
+            </table>
+        <?php } ?>
+        </div>
+        <?php echo $this->paginationControl($this->paginator, 'Sliding', 'controlpaginacion.phtml', $params); ?>
+     <?   } else if ($this->mensaje){ ?>
             <h2><?=Zend_Registry::get('Zend_Translate')->translate('m027')?></h2>
-                <?=$this->mensaje?>
-            </div>
-<?     } ?>
+            <?=$this->mensaje?>
+    <? } ?>
+</div>

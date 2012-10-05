@@ -27,7 +27,7 @@ return array(
     "m023"  =>  "No results were found",
     "m024"  =>  "Previous",
     "m025"  =>  "Next",
-    "m026"  =>  "Terms searcher",
+    "m026"  =>  "Project Trasno's projects corpus",
     "m027"  =>  "Results",
     "m028"  =>  "Number of results",
     "m029"  =>  "Project",
@@ -120,7 +120,7 @@ return array(
     "m116"  =>  "Do you want to remove the version",
     "m117"  =>  "Do you want to remove the user",
     "m118"  =>  "Go back",
-    
+
     "err000"    =>  "Application Error",
     "err001"    =>  "Check your e-mail, you must activate your account to access",
     "err002"    =>  "Check your e-mail to get your new password",
@@ -161,7 +161,7 @@ return array(
     "err037"    =>  "There aren't assigned projects",
     "err038"    =>  "E-mail and password required",
     "err039"    =>  "Page not found",
-    
+
 );
 
 ?>
